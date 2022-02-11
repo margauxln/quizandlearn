@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const config = require("config");
-// const router = express.Router();
 
 const app = express();
 
@@ -23,7 +22,4 @@ app.listen(port, () =>
   console.log(`Server started on port: http://localhost:${port}`)
 );
 
-/*
-//Routes
-app.use('/',require('./routes/index'));
-*/
+app.use("/users", require("./routes/users"));
