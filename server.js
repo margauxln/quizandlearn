@@ -1,25 +1,12 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const config = require("config");
+const http = require('http');
 
-const app = express();
+const server = http.createServer((req, res) => {
+    res.end('Voilà la réponse du serveur !');
+});
 
-const db = config.get("mongoURI");
+server.listen(process.env.PORT || 3000);
 
-mongoose
-  .connect(db, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("MongoDB Connected..."))
-  .catch((err) => console.log(err));
 
-//BodyParser
-app.use(express.urlencoded({ extended: false }));
 
-const port = 5000;
-app.listen(port, () =>
-  console.log(`Server started on port: http://localhost:${port}`)
-);
 
-app.use("/users", require("./routes/users"));
+
