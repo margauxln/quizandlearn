@@ -1,25 +1,57 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const config = require("config");
+//Ceci est le server node
 
-const app = express();
+//Les importations : app provient de app.js
+const http = require('http');
+const app = require('./app');
 
-const db = config.get("mongoURI");
+/*normalizePort renvoie un port valide, qu'il soit fourni sous la forme d'un numéro ou d'une chaîne*/
+const normalizePort = val => {
+    const port = parseInt(val, 10);
 
-mongoose
-  .connect(db, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("MongoDB Connected..."))
-  .catch((err) => console.log(err));
+    if (isNaN(port)) {
+        return val;
+    }
+    if (port >= 0) {
+        return port;
+    }
+    return false;
+};
 
-//BodyParser
-app.use(express.urlencoded({ extended: false }));
+//L'app tourne sur le port 3000
+const port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
 
-const port = 5000;
-app.listen(port, () =>
-  console.log(`Server started on port: http://localhost:${port}`)
-);
+/*la fonction errorHandler  recherche les différentes erreurs et les gère de manière appropriée. Elle est ensuite enregistrée dans le serveur*/
+const errorHandler = error => {
+    if (error.syscall !== 'listen') {
+        throw error;
+    }
+    const address = server.address();
+    const bind = typeof address === 'string' ? 'pipe ' + address : 'port: ' + port;
+    switch (error.code) {
+        case 'EACCES':
+            console.error(bind + ' requires elevated privileges.');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(bind + ' is already in use.');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+};
 
-app.use("/users", require("./routes/users"));
+//création d'un server http avec app express
+const server = http.createServer(app);
+
+server.on('error', errorHandler);
+
+//Ici le server écoute
+server.on('listening', () => {
+    const address = server.address();
+    const bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + port;
+    console.log('Listening on ' + bind);
+});
+
+server.listen(port);

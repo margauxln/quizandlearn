@@ -1,22 +1,9 @@
-const User = require("../models/user.js");
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-//login handle
-router.get("/login", (req, res) => {
-  res.render("login");
-});
+const userCtrl = require('../controllers/users');
 
-router.get("/register", (req, res) => {
-  res.render("register");
-});
-
-//Register handle
-router.post("/register", (req, res) => {});
-
-router.post("/login", (req, res, next) => {});
-
-//logout
-router.get("/logout", (req, res) => {});
+router.post('/signup', userCtrl.signup);
+router.post('/login', userCtrl.login);
 
 module.exports = router;
