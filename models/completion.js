@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
-const completionSchema = mongoose.Schema({
+// const completionSchema = mongoose.Schema({
 
-}
+// }
 
-module.exports = mongoose.model('Completion', completionSchema);
+// module.exports = mongoose.model('Completion', completionSchema);

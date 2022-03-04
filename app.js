@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const config = require("config");
-const userRoutes = require('./routes/user');
+const userRoutes = require('./routes/users');
 
 const app = express();
 //connection bdd avec mongoose
