@@ -15,6 +15,7 @@ mongoose
     .then(() => console.log("MongoDB Connected..."))
     .catch((err) => console.log(err));
 
+app.use(express.json());
 app.use('/api/auth', userRoutes);
 
 module.exports = app;

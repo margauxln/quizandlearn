@@ -1,6 +1,4 @@
 ### Quiz & Learn: backend
-## Lancer le projet
-nodemon server
 ## Initialisation projet
 npm init
 ## Installation Server
@@ -13,3 +11,5 @@ npm i config
 npm install mongoose-unique-validator
 npm install bcrypt
 npm install jsonwebtoken
+## Lancer le projet
+nodemon server
