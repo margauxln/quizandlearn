@@ -1,0 +1,54 @@
+.SignUpContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    
+}
+
+.field {
+    max-width: 300px;
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+}
+
+/*Errors*/
+#nameError,
+#surNameError,
+#emailError,
+#passwordError,
+#confirmPasswordError {
+    color: firebrick;
+}
+
+.errorMessage{
+    display: flex;
+}
+
+.errorIcon{
+    color: firebrick;
+    padding-right: 5px;
+    padding-top: 3px;
+}
+
+.passwordContainer,
+.confirmPasswordContainer{
+    position: relative;
+}
+
+.passwordEye,
+.confirmPasswordEye{
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 35px;
+    right: 10px;
+}
+
+.eye{
+    color: 	#D3D3D3;
+    height: 18px;
+}
