@@ -25,13 +25,13 @@ const SignUp = () => {
             name: Yup.string()
                 .max(24, "Prénom invalide")
                 .matches(NAME_SURNAME_REGEX, 'Prénom invalide')
-                .required("Nom de famille trop long"),
+                .required("Champ obligatoire"),
             surname: Yup.string()
                 .max(24, "Nom de famille invalide")
                 .matches(NAME_SURNAME_REGEX, 'Nom de famille invalide')
                 .required("Champ obligatoire"),
             email: Yup.string()
-                .email("Invalid email adresse")
+                .email("Adress email invalide")
                 .required("Champ obligatoire"),
             password: Yup.string()
                 .matches(PASSWORD_REGEX, 'Le mot de passe doit contenir au minimum 8 caractères : au moins une lettre minuscule et une lettre majuscule, un caractère spécial et un chiffre')
@@ -39,7 +39,7 @@ const SignUp = () => {
             confirmPassword: Yup.string()
                 /*oneOf = equals to*/ 
                 .oneOf([Yup.ref('password'), null], 'Les mots de passe saisis ne sont pas idéntiques')
-                .required("Champ obligatoire"),
+                .required("Champ obligatoire")
         }),
 
         onSubmit: (values) => {
@@ -70,9 +70,10 @@ const SignUp = () => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     value = {formik.values.name}
+                                    maxLength="24"
                                     aria-describedby="nameError"
                                     className="input"
-                                    />
+                            />
 
                         {formik.touched.name && formik.errors.name ?
 
@@ -92,7 +93,9 @@ const SignUp = () => {
                                    onChange={formik.handleChange}
                                    onBlur={formik.handleBlur}
                                    value = {formik.values.surname}
-                                   aria-describedby="surNameError" />
+                                   maxLength="24"
+                                   aria-describedby="surNameError" 
+                            />
 
                             {formik.touched.surname && formik.errors.surname ? 
 
@@ -112,7 +115,9 @@ const SignUp = () => {
                                    onChange={formik.handleChange}
                                    onBlur={formik.handleBlur}
                                    value = {formik.values.email}
-                                   aria-describedby="emailError" />
+                                   maxLength="24"
+                                   aria-describedby="emailError" 
+                            />
 
                             {formik.touched.email && formik.errors.email ? 
 
@@ -132,7 +137,9 @@ const SignUp = () => {
                                    onChange={formik.handleChange}
                                    onBlur={formik.handleBlur}
                                    value = {formik.values.password}
-                                   aria-describedby="passwordError"/>
+                                   maxLength="24"
+                                   aria-describedby="passwordError"
+                            />
 
                             <button onClick={togglePasswordVisiblity} className="passwordEye">
                                 <FontAwesomeIcon icon={faEye} className="eye"/>
@@ -156,7 +163,9 @@ const SignUp = () => {
                                    onChange={formik.handleChange}
                                    onBlur={formik.handleBlur}
                                    value = {formik.values.confirmPassword}
-                                   aria-describedby="confirmPasswordError"/>
+                                   maxLength="24"
+                                   aria-describedby="confirmPasswordError"
+                            />
                             
                             <button onClick={togglePasswordVisiblity} className="confirmPasswordEye">
                                 <FontAwesomeIcon icon={faEye} className="eye"/>

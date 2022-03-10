@@ -1,7 +1,7 @@
 import 'bulma/css/bulma.min.css';
 import React from "react";
 import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
-import Login from "../authentification/component/login/Login";
+import SignIn from '../authentification/component/sign-in/SignIn';
 import SignUp from "../authentification/component/sign-up/SignUp";
 
 const App = () => {
@@ -10,8 +10,8 @@ const App = () => {
       <Router>
         <Switch>
 
-          <Route path="/login">
-            <Login/>
+          <Route path="/signin">
+            <SignIn/>
           </Route>
 
           <Route path="/signup">
@@ -19,7 +19,7 @@ const App = () => {
           </Route>
 
           <Route path="/">
-            <Redirect from="/" to="/login"/>
+            <Redirect from="/" to="/signin"/>
           </Route>
 
         </Switch>

@@ -1,13 +1,13 @@
-import "./Login.css";
+import "./SignIn.css";
 import { Link } from "react-router-dom"; 
 
-const Login = () => {
+const SignIn = () => {
 
     return(
         <div className="LoginContainer">
 
             <h1>Bienvenu sur Quiz & Learn</h1>
-            
+
             <br/>
 
             <h2> Se Connecter</h2>
@@ -41,4 +41,4 @@ const Login = () => {
 
 }
 
-export default Login;
+export default SignIn;
