@@ -105,7 +105,7 @@ const SignUp = () => {
                     <form onSubmit={formik.handleSubmit}>
 
                         <div className="field">
-                            <label htmlFor="name">Prénom*</label>
+                            <label htmlFor="name" className="sr-only">Prénom*</label>
                                 <input  id="name"
                                         name="name"
                                         type="text"
@@ -116,6 +116,7 @@ const SignUp = () => {
                                         maxLength="24"
                                         aria-describedby="nameError"
                                         className="input"
+                                        placeholder = "Prénom"
                                 />
 
                             {formik.touched.name && formik.errors.name ?
@@ -127,7 +128,7 @@ const SignUp = () => {
                         </div>
 
                         <div className="field">
-                            <label htmlFor="nom">Nom*</label>
+                            <label htmlFor="nom" className="sr-only">Nom</label>
                                 <input id="nom"
                                     name="surname"
                                     type="text"
@@ -137,7 +138,8 @@ const SignUp = () => {
                                     onBlur={formik.handleBlur}
                                     value = {formik.values.surname}
                                     maxLength="24"
-                                    aria-describedby="surNameError" 
+                                    aria-describedby="surNameError"
+                                    placeholder="Nom"
                                 />
 
                                 {formik.touched.surname && formik.errors.surname ? 
@@ -149,7 +151,7 @@ const SignUp = () => {
                         </div>
 
                         <div className="field">
-                            <label htmlFor="email">E-mail*</label>
+                            <label htmlFor="email" className="sr-only">E-mail</label>
                                 <input id="email"
                                     name="email"
                                     type="email"
@@ -159,7 +161,8 @@ const SignUp = () => {
                                     onBlur={formik.handleBlur}
                                     value = {formik.values.email}
                                     maxLength="24"
-                                    aria-describedby="emailError" 
+                                    aria-describedby="emailError"
+                                    placeholder="E-mail"
                                 />
 
                                 {formik.touched.email && formik.errors.email ? 
@@ -171,7 +174,7 @@ const SignUp = () => {
                         </div>
 
                         <div className={`${"field"} ${"passwordContainer"}`}>
-                            <label htmlFor="password">Mot de passe*</label>
+                            <label htmlFor="password"></label>
                                 <input id="password"
                                     name="password"
                                     autoComplete="on"
@@ -182,6 +185,7 @@ const SignUp = () => {
                                     value = {formik.values.password}
                                     maxLength="24"
                                     aria-describedby="passwordError"
+                                    placeholder="Mot de passe"
                                 />
 
                                 <button onClick={togglePasswordVisiblity} className="passwordEye">
@@ -197,7 +201,7 @@ const SignUp = () => {
                         </div>
 
                         <div className={`${"field"} ${"confirmPasswordContainer"}`}>
-                            <label htmlFor="password-confirmation">Confirmation du mot de passe**</label>
+                            <label htmlFor="password-confirmation" className="sr-only">Confirmation du mot de passe</label>
                                 <input id="password-confirmation"
                                     name="confirmPassword"
                                     type={confirmedPasswordShown ? "text" : "password"}
@@ -208,6 +212,7 @@ const SignUp = () => {
                                     value = {formik.values.confirmPassword}
                                     maxLength="24"
                                     aria-describedby="confirmPasswordError"
+                                    placeholder="Confirmation du mot de passe"
                                 />
                                 
                                 <button onClick={toggleConfirmedPasswordVisiblity} className="confirmPasswordEye">
