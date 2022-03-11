@@ -8,10 +8,9 @@ const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
 const userSchema = mongoose.Schema({
-  //firstname: { type: String, required: true },
-  //lastname: { type: String, required: true },
+  name: { type: String, required: true },
+  surname: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  //required true: n'est pas suffisant pour qu'il n'y ait pas d'autre email dans la base de données
   password: { type: String, required: true },
   // photo: String,
   // contacts: [Contact],
@@ -26,7 +25,7 @@ const userSchema = mongoose.Schema({
   // completions: [Completion],
   // ratings:[Rating],
   // reportings:[Reporting],
-}); 
+});
 
 //grâce à ce plugin : solution à problème
 userSchema.plugin(uniqueValidator);
