@@ -10,7 +10,7 @@ const NAME_SURNAME_REGEX =/^[A-Z][A-Za-zéèê-]+$/;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 //End point backend API
-const REGISTER_URL = '/signUp';
+const REGISTER_URL = '/signup';
 
 const SignUp = () => {
     const [passwordShown, setPasswordShown] = useState(false);
@@ -49,9 +49,6 @@ const SignUp = () => {
         }),
 
         onSubmit: async (values) => {
-            /* console.log(values);
-            setSuccess(true); */
-
             try {
                  const response = await axios.post('REGISTER_URL', 
                                     JSON.stringify({name : values.name,
