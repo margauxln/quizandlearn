@@ -94,5 +94,8 @@ npm i @fortawesome/react-fontawesome
 
 
 ## Start the projet
+## first time :
+npm init
+## every time :
 npm start
 
