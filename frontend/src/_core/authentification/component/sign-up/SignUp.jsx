@@ -14,6 +14,8 @@ const REGISTER_URL = '/signUp';
 
 const SignUp = () => {
     const [passwordShown, setPasswordShown] = useState(false);
+    const [confirmedPasswordShown, setConfirmedPasswordShown] = useState(false);
+
     const [success, setSuccess] = useState(false);
     const [errMsg, setErrMsg] = useState("");
 
@@ -82,6 +84,10 @@ const SignUp = () => {
 
     const togglePasswordVisiblity = () => {
         setPasswordShown(!passwordShown);
+    };
+
+    const toggleConfirmedPasswordVisiblity = () => {
+        setConfirmedPasswordShown(!confirmedPasswordShown);
     };
 
     return(
@@ -194,7 +200,7 @@ const SignUp = () => {
                             <label htmlFor="password-confirmation">Confirmation du mot de passe**</label>
                                 <input id="password-confirmation"
                                     name="confirmPassword"
-                                    ttype={passwordShown ? "text" : "password"}
+                                    type={confirmedPasswordShown ? "text" : "password"}
                                     className="input"
                                     autoComplete="on" 
                                     onChange={formik.handleChange}
@@ -204,7 +210,7 @@ const SignUp = () => {
                                     aria-describedby="confirmPasswordError"
                                 />
                                 
-                                <button onClick={togglePasswordVisiblity} className="confirmPasswordEye">
+                                <button onClick={toggleConfirmedPasswordVisiblity} className="confirmPasswordEye">
                                     <FontAwesomeIcon icon={faEye} className="eye"/>
                                 </button>
 
