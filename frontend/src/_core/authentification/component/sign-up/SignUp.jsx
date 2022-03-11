@@ -49,8 +49,8 @@ const SignUp = () => {
         }),
 
         onSubmit: async (values) => {
-            console.log(values);
-            setSuccess(true);
+            /* console.log(values);
+            setSuccess(true); */
 
             try {
                  const response = await axios.post('REGISTER_URL', 
@@ -116,7 +116,7 @@ const SignUp = () => {
                                         maxLength="24"
                                         aria-describedby="nameError"
                                         className="input"
-                                        placeholder = "Prénom"
+                                        placeholder = "Prénom"  
                                 />
 
                             {formik.touched.name && formik.errors.name ?
