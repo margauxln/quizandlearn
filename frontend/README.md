@@ -69,30 +69,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-### ISTALLATIONS Quizz&Learn : front
-npm i --save axios
-
-##  router
-npm install react-router-dom@5.2.0 --save
-
-## Bulma and Bulma icons
-npm install bulma
-
-## Formik
- npm install formik --save
-
- ## Yup
- npm install yup --save
-
- ## CLSX
- npm install clsx
-
-## Font awesome provides svgs as React Component
-## https://fontawesome.com/v6/docs/web/use-with/react/
-npm install --save @fortawesome/free-solid-svg-icons
-npm i @fortawesome/react-fontawesome
-
-
 ## Start the projet
 ## first time :
 npm init
