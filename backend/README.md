@@ -1,15 +1,13 @@
 # Quizandlearn backend
 
-
-[![Build status on Windows](../../workflows/CI-Windows/badge.svg)](../../actions?query=workflow%3ACI-Windows)
-[![Build status on macOS](../../workflows/CI-macOS/badge.svg)](../../actions?query=workflow%3ACI-macOS)
 ⚠️ **TODO**: ces ci.yml ne font rien, il faudra les remplacer
 
 ⚠️ **TODO**: Short description of the project.
 
-
 ## Features:
+
 ⚠️ **TODO**:
+
 - feature1
 - feature2
 - etc
@@ -18,43 +16,55 @@
 
 Source code only? Or links to published packages / Github releases.
 
-
 ## Prerequisites
 
 Quizandlearn requires:
 
-- Node >= ⚠️ **TODO**: version de node
+- Node
+
+```
+$ nvm install 16
+Now using node v16.9.1 (npm v7.21.1)
+$ node -v
+v16.9.1
+$ nvm use 14
+Now using node v14.18.0 (npm v6.14.15)
+$ node -v
+v14.18.0
+```
 
 ## Installation
 
 1. Clone the repository
-2. Create a `default.json` file within `config` folder and copy  MongoDB login credentials.
- 
-  ` {
-   "mongoURI": "mongodb+srv://mongo etc "
-   }`
+2. Go to the staging branch. In the backend folder, add a new `config` folder. Create a `default.json` file inside with MongoDB login credentials (cf Notion).
 
-3. Install dependencies
+` { "mongoURI": "mongodb+srv:// login / credentials " }`
+
+3. Install dependencies (in the `backend` folder)
 
 ```
-npm install
+$ npm install
 ```
+
 4. Run server
+
 ```
-nodemon server
+$ npm start
+$ nodemon server
 ```
 
 ### Testing
 
 To run tests
+
 ```
-⚠️ **TODO**:
-commande de test
+$ npm test
 ```
 
 ### Linter
 
 ⚠️ **TODO**: trouver un Linter
+
 ```
 ⚠️ **TODO**:
 commande de linter
