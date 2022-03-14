@@ -88,16 +88,17 @@ const SignUp = () => {
 
                         <div className="field">
                             <label htmlFor="name" className="sr-only">Prénom*</label>
-                                <input  id="name"
-                                        name="name"
-                                        type="text"
-                                        autoComplete="on"
-                                        onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
-                                        value = {formik.values.name}
-                                        aria-describedby="nameError"
-                                        className="input"
-                                        placeholder = "Prénom"  
+                                <input 
+                                    id="name"
+                                    name="name"
+                                    type="text"
+                                    autoComplete="on"
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    value = {formik.values.name}
+                                    aria-describedby="nameError"
+                                    className="input"
+                                    placeholder = "Prénom"  
                                 />
 
                             {formik.touched.name && formik.errors.name ?
@@ -110,7 +111,8 @@ const SignUp = () => {
 
                         <div className="field">
                             <label htmlFor="nom" className="sr-only">Nom</label>
-                                <input id="nom"
+                                <input 
+                                    id="nom"
                                     name="surname"
                                     type="text"
                                     className="input"
@@ -132,7 +134,8 @@ const SignUp = () => {
 
                         <div className="field">
                             <label htmlFor="email" className="sr-only">E-mail</label>
-                                <input id="email"
+                                <input 
+                                    id="email"
                                     name="email"
                                     type="email"
                                     className="input"
@@ -154,7 +157,8 @@ const SignUp = () => {
 
                         <div className={`${"field"} ${"passwordContainer"}`}>
                             <label htmlFor="password"></label>
-                                <input id="password"
+                                <input 
+                                    id="password"
                                     name="password"
                                     autoComplete="on"
                                     type={passwordShown ? "text" : "password"}
@@ -180,7 +184,8 @@ const SignUp = () => {
 
                         <div className={`${"field"} ${"confirmPasswordContainer"}`}>
                             <label htmlFor="password-confirmation" className="sr-only">Confirmation du mot de passe</label>
-                                <input id="password-confirmation"
+                                <input 
+                                    id="password-confirmation"
                                     name="confirmPassword"
                                     type={confirmedPasswordShown ? "text" : "password"}
                                     className="input"
