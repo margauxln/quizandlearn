@@ -5,8 +5,8 @@ import { faInfoCircle, faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from 'react';
 import axios from '../../../../api/axios';
+import { useHistory } from "react-router-dom";
 
-const NAME_SURNAME_REGEX =/^[A-Z][A-Za-zéèê-]+$/;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 //End point backend API
@@ -15,9 +15,8 @@ const SIGNUP_URL = '/signup';
 const SignUp = () => {
     const [passwordShown, setPasswordShown] = useState(false);
     const [confirmedPasswordShown, setConfirmedPasswordShown] = useState(false);
-
-    const [success, setSuccess] = useState(false);
     const [errMsg, setErrMsg] = useState("");
+    const history = useHistory();
 
     const formik = useFormik({
 
@@ -31,10 +30,10 @@ const SignUp = () => {
 
         validationSchema: Yup.object({
             name: Yup.string()
-                .matches(NAME_SURNAME_REGEX, 'Prénom invalide')
+                .max(45, "Prénom invalide")
                 .required("Champ obligatoire"),
             surname: Yup.string()
-                .matches(NAME_SURNAME_REGEX, 'Nom de famille invalide')
+                .max(45, "Nom invalide")
                 .required("Champ obligatoire"),
             email: Yup.string()
                 .email("Adress email invalide")
@@ -62,7 +61,6 @@ const SignUp = () => {
                     console.log(response.data);
                     console.log(response.accessToken);
                     console.log(JSON.stringify(response));
-                    setSuccess(true);
 
             } catch (error) {
                 if (!error?.response) {
@@ -89,11 +87,7 @@ const SignUp = () => {
 
     return(
         <>
-            { success ?
-            /*Partie à rajouter*/
-                <h2>Success! Link to sign in</h2> :
-
-                 <section className="SignUpContainer">  
+             <section className="SignUpContainer">  
                     <h1>Bienvenu sur Quiz & Learn</h1>
                     <br/>
                     
@@ -110,7 +104,6 @@ const SignUp = () => {
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                         value = {formik.values.name}
-                                        maxLength="24"
                                         aria-describedby="nameError"
                                         className="input"
                                         placeholder = "Prénom"  
@@ -134,7 +127,6 @@ const SignUp = () => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     value = {formik.values.surname}
-                                    maxLength="24"
                                     aria-describedby="surNameError"
                                     placeholder="Nom"
                                 />
@@ -157,7 +149,6 @@ const SignUp = () => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     value = {formik.values.email}
-                                    maxLength="24"
                                     aria-describedby="emailError"
                                     placeholder="E-mail"
                                 />
@@ -180,7 +171,6 @@ const SignUp = () => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     value = {formik.values.password}
-                                    maxLength="24"
                                     aria-describedby="passwordError"
                                     placeholder="Mot de passe"
                                 />
@@ -207,7 +197,6 @@ const SignUp = () => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     value = {formik.values.confirmPassword}
-                                    maxLength="24"
                                     aria-describedby="confirmPasswordError"
                                     placeholder="Confirmation du mot de passe"
                                 />
@@ -225,10 +214,14 @@ const SignUp = () => {
                         </div>
                         
                         <div className="buttonContainer">
-                            <input className="button" type="submit" value="Submit"/>
+                            <input className="button" 
+                                   type="submit" 
+                                   value="Submit" 
+                                   /* onClick={() => history.push('/signin')} */
+                            />
                         </div>
                 </form>
-            </section>}
+            </section>
         </>     
     );
 }
