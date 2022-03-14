@@ -17,6 +17,7 @@ const SignUp = () => {
     const [confirmedPasswordShown, setConfirmedPasswordShown] = useState(false);
     const [errMsg, setErrMsg] = useState("");
     const history = useHistory();
+    const errRef = useRef();
 
     const formik = useFormik({
 
@@ -58,21 +59,14 @@ const SignUp = () => {
                                         headers: { 'Content-Type': 'application/json' },
                                         withCredentials: false
                                     });
+                                    
                     console.log(response.data);
                     console.log(response.accessToken);
                     console.log(JSON.stringify(response));
-
+                    history.push('/signin');
+                    
             } catch (error) {
-                if (!error?.response) {
-                    setErrMsg('Aucune réponse du server');
-
-                } else if (error.response?.status === 409) {
-                    setErrMsg('Vous avez déjà un compte');
-
-                } else {
-                    //Generic error message
-                    setErrMsg('Inscription non aboutie')
-                }
+                setErrMsg('Vous avez déjà un compte');
             }
         }
     });
@@ -216,8 +210,7 @@ const SignUp = () => {
                         <div className="buttonContainer">
                             <input className="button" 
                                    type="submit" 
-                                   value="Submit" 
-                                   /* onClick={() => history.push('/signin')} */
+                                   value="Submit"
                             />
                         </div>
                 </form>
