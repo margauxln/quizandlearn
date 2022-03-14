@@ -5,19 +5,17 @@ import { faInfoCircle, faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from 'react';
 import axios from '../../../../api/axios';
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-
-//End point backend API
 const SIGNUP_URL = '/signup';
+const SIGNIN_URL='/signin';
 
 const SignUp = () => {
     const [passwordShown, setPasswordShown] = useState(false);
     const [confirmedPasswordShown, setConfirmedPasswordShown] = useState(false);
-    const [errMsg, setErrMsg] = useState("");
+    const [accountError, setAccountError] = useState("");
     const history = useHistory();
-    const errRef = useRef();
 
     const formik = useFormik({
 
@@ -59,14 +57,13 @@ const SignUp = () => {
                                         headers: { 'Content-Type': 'application/json' },
                                         withCredentials: false
                                     });
-                                    
+                                          
                     console.log(response.data);
-                    console.log(response.accessToken);
                     console.log(JSON.stringify(response));
-                    history.push('/signin');
+                    history.push(SIGNIN_URL);
                     
             } catch (error) {
-                setErrMsg('Vous avez déjà un compte');
+                setAccountError('Vous avez déjà un compte, connectez-vous en utilisant le lien ci-dessous');
             }
         }
     });
@@ -205,14 +202,23 @@ const SignUp = () => {
                                         <FontAwesomeIcon icon={faInfoCircle} className="errorIcon" />  
                                         <p id="confirmPasswordError">{formik.errors.confirmPassword}</p>
                                     </span> : null}
+                                
+                            {accountError && 
+                                <span className="errorMessage">
+                                    <FontAwesomeIcon icon={faInfoCircle} className="errorIcon" />  
+                                    <p id="accountError">{accountError}</p>
+                                </span>}
                         </div>
                         
                         <div className="buttonContainer">
                             <input className="button" 
                                    type="submit" 
-                                   value="Submit"
+                                   value="Connexion"
                             />
                         </div>
+                        <br/>
+
+                        <p>Vous avez déjà un compte ? <Link to={SIGNIN_URL}> Connectez-vous !</Link></p>
                 </form>
             </section>
         </>     

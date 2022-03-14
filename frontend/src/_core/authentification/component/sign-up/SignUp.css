@@ -29,6 +29,7 @@ input[type="password"]::placeholder{
 }
 
 /*Errors*/
+#accountError,
 #nameError,
 #surNameError,
 #emailError,
