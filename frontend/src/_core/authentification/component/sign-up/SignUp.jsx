@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { faInfoCircle, faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from 'react';
-import axios from '../../../../api/axios';
+import axios from '../../../../_core/api/axios';
 import { useHistory, Link } from "react-router-dom";
 
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
