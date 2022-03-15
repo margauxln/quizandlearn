@@ -216,9 +216,10 @@ const SignUp = () => {
                         </div>
                         
                         <div className="buttonContainer">
-                            <input className="button" 
-                                   type="submit" 
-                                   value="Connexion"
+                            <input 
+                                className="button" 
+                                type="submit" 
+                                value="Connexion"
                             />
                         </div>
                         <br/>
