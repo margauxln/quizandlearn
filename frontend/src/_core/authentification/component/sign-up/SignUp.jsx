@@ -9,7 +9,7 @@ import { useHistory, Link } from "react-router-dom";
 
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const SIGNUP_URL = '/signup';
-const SIGNIN_URL='/signin';
+const SIGNIN_URL = '/signin';
 
 const SignUp = () => {
     const [passwordShown, setPasswordShown] = useState(false);
@@ -55,7 +55,7 @@ const SignUp = () => {
                                                     password: values.password}),
                                     {
                                         headers: { 'Content-Type': 'application/json' },
-                                        withCredentials: false
+                                        withCredentials: true
                                     });
                                           
                     console.log(response.data);

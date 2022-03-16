@@ -1,5 +1,5 @@
 import "./SignIn.css";
-import { Link } from "react-router-dom"; 
+import { Link, useHistory } from "react-router-dom"; 
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { faInfoCircle, faEye } from "@fortawesome/free-solid-svg-icons";
@@ -15,6 +15,7 @@ const SignIn = () => {
     const { setAuth } = useContext(AuthContext);
     const [errMsg, setErrMsg] = useState('');
     const [passwordShown, setPasswordShown] = useState(false);
+    const history = useHistory();
 
     const formik = useFormik({
 
@@ -40,17 +41,19 @@ const SignIn = () => {
                         withCredentials: true
                     });
                     console.log(JSON.stringify(response?.data));
-                    /* history.push(SIGNIN_URL); */
                     
                     /*Optional chaining*/
                     const accessToken = response?.data?.accessToken;
                     const user = response?.data?.user;
                     const password = response?.data?.password;
-                    console.log(accessToken);
+                    console.log((response?.data.accessToken));
                     /*Envoyer les roles du backend (it should be an array of roles) puis mettre roles dans objet SetAuth
                     const roles = response?.data?.roles;
                     */
                     setAuth({user, password, accessToken});
+
+                    /*Ajouter URL où l'on veut aller*/
+                    history.push(SIGNUP_URL);
                      
             } catch (error) {
                 setErrMsg("Veuillez entrer des identifiants valides.");
@@ -124,7 +127,7 @@ const SignIn = () => {
                 </div>
 
                 <div className="buttonContainer">
-                    <input className="button" type="button" value="Log In"/>
+                    <input className="button" type="submit" value="Log In"/>
                 </div>
 
                 {errMsg && 
