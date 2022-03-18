@@ -1,21 +1,23 @@
 import "./SignIn.css";
-import { Link, useHistory } from "react-router-dom"; 
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { faInfoCircle, faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from '../../../../_core/api/axios';
-import { useState, useContext } from 'react';
-import AuthContext from "../context/AuthProvider";
+import { useState } from 'react';
+import useAuth from "../../../../_common/hooks/UseAuth";
+import { Link, useNavigate } from 'react-router-dom';
 
-const SIGNUP_URL_FRONTEND = '/signup';
+const EXPLORE_URL_FRONTEND = '/explore';
 const LOGIN_URL_BACKEND = '/login';
 
 const SignIn = () => {
-    const { setAuth } = useContext(AuthContext);
+    const { setAuth } = useAuth();
+    const navigate = useNavigate();
+
     const [errMsg, setErrMsg] = useState('');
     const [passwordShown, setPasswordShown] = useState(false);
-    const history = useHistory();
+
 
     const formik = useFormik({
 
@@ -40,15 +42,13 @@ const SignIn = () => {
                         headers: { 'Content-Type': 'application/json' },
                         withCredentials: true
                     });
-                    console.log(JSON.stringify(response.data));
-                    console.log(JSON.stringify(response));  
+                    navigate(EXPLORE_URL_FRONTEND);
+
+                    /* console.log(JSON.stringify(response.data));
+                    console.log(JSON.stringify(response));   */
 
                     const accessToken = response.data.token;
-                    console.log(JSON.stringify(accessToken));
-
                     setAuth({email : values.email, password: values.password, accessToken});
-
-                    history.push(SIGNUP_URL_FRONTEND);
                      
             } catch (error) {
                 if (!error.response) {
@@ -56,9 +56,6 @@ const SignIn = () => {
 
                 } else if (error.response.status === 401) {
                     setErrMsg("Veuillez entrer des identifiants valides");
-
-                } else if (error.response.status === 204) {
-                    setErrMsg("No data");
                 }
             }
         }
@@ -140,7 +137,7 @@ const SignIn = () => {
             </form>
 
             <br/>
-            <p>Nouveau sur la plateforme ? Inscris-toi ici :<Link to={SIGNUP_URL_FRONTEND}>Sign Up</Link></p>
+            <p>Nouveau sur la plateforme ? Inscris-toi ici : <Link to={EXPLORE_URL_FRONTEND}>Sign Up</Link></p>
         </div>
     );
 

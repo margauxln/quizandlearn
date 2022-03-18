@@ -2,13 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './_core/app/App';
 import reportWebVitals from './reportWebVitals';
-import { AuthProvider } from './_core/authentification/component/context/AuthProvider';
+import { AuthProvider } from './_common/component/authentification/context/AuthProvider';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes>
+            <Route path="/*" element={<App />} />
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

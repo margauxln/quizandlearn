@@ -5,7 +5,7 @@ import { faInfoCircle, faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from 'react';
 import axios from '../../../../_core/api/axios';
-import { useHistory, Link } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const SIGNUP_URL_BACKEND = '/signup';
@@ -15,7 +15,7 @@ const SignUp = () => {
     const [passwordShown, setPasswordShown] = useState(false);
     const [confirmedPasswordShown, setConfirmedPasswordShown] = useState(false);
     const [errMsg, setErrMsg] = useState('');
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const formik = useFormik({
 
@@ -60,7 +60,7 @@ const SignUp = () => {
                                           
                     console.log(response.data);
                     console.log(JSON.stringify(response));
-                    history.push(SIGNIN_URL_FRONTEND);
+                    navigate(SIGNIN_URL_FRONTEND);
                     
             } catch (error) {
                 if (!error.response) {
@@ -230,7 +230,7 @@ const SignUp = () => {
                         </div>
                         <br/>
 
-                        <p>Vous avez déjà un compte ? <Link to={SIGNIN_URL_FRONTEND}> Connectez-vous !</Link></p>
+                        <p>Vous avez déjà un compte ? <Link to={SIGNIN_URL_FRONTEND}> Connectez-vous !</Link> </p>
                 </form>
             </section>
         </>     

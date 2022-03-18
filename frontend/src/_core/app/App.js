@@ -1,30 +1,28 @@
 import 'bulma/css/bulma.min.css';
 import React from "react";
-import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
-import SignIn from '../authentification/component/sign-in/SignIn';
-import SignUp from "../authentification/component/sign-up/SignUp";
+import SignIn from '../../_common/component/authentification/sign-in/SignIn';
+import SignUp from "../../_common/component/authentification/sign-up/SignUp";
+import { Routes, Route } from "react-router-dom";
+import Layout from '../../_common/component/layout/Layout';
+import Explore from '../../business/explore/component/Explore';
+import RequireAuth from '../../_common/component/authentification/require-auth/RequireAuth';
 
 const App = () => {
   return (
-    <React.StrictMode>
-      <Router>
-        <Switch>
+    <Routes>
+      <Route path="/" element={<Layout/>}>
 
-          <Route path="/signin">
-            <SignIn/>
-          </Route>
+        {/* public routes */}
+        <Route path="signin" element={<SignIn />} />
+        <Route path="signup" element={<SignUp />} />
 
-          <Route path="/signup">
-            <SignUp/>
-          </Route>
+        <Route element={<RequireAuth />}>
+          {/* we want to protect these routes */}
+          <Route path="/explore" element={<Explore />} />
+        </Route>
 
-          <Route path="/">
-            <Redirect from="/" to="/signin"/>
-          </Route>
-
-        </Switch>
-      </Router>
-    </React.StrictMode>
+      </Route>
+    </Routes>
   );
 }
 
