@@ -40,20 +40,14 @@ const SignIn = () => {
                         headers: { 'Content-Type': 'application/json' },
                         withCredentials: true
                     });
-
                     console.log(JSON.stringify(response.data));
-                    
-                    const accessToken = response.data.accessToken;
-                    const user = response.data.user;
-                    const password = response.data.password;
-                    console.log(((response.data.accessToken)));
+                    console.log(JSON.stringify(response));  
 
-                    /*Envoyer les roles du backend (it should be an array of roles) puis mettre roles dans objet SetAuth
-                    const roles = response.data.roles;
-                    */
-                    setAuth({user, password, accessToken});
+                    const accessToken = response.data.token;
+                    console.log(JSON.stringify(accessToken));
 
-                    /*Ajouter URL où l'on veut aller*/
+                    setAuth({email : values.email, password: values.password, accessToken});
+
                     history.push(SIGNUP_URL_FRONTEND);
                      
             } catch (error) {
