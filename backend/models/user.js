@@ -25,7 +25,10 @@ const userSchema = mongoose.Schema({
   // completions: [Completion],
   // ratings:[Rating],
   // reportings:[Reporting],
-});
+  },
+  {
+    timestamps: true
+  });
 
 //grâce à ce plugin : solution à problème
 userSchema.plugin(uniqueValidator);
