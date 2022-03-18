@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const config = require("config");
 const userRoutes = require('./routes/users');
+const quizRoutes = require('./routes/quiz');
 
 const app = express();
 //connection bdd avec mongoose
@@ -24,5 +25,6 @@ mongoose
 
 app.use(express.json());
 app.use('/api/auth', userRoutes);
+app.use('/api/quiz', quizRoutes);
 
 module.exports = app;
