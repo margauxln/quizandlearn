@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './_core/app/App';
 import reportWebVitals from './reportWebVitals';
-import AuthProvider from './_core/authentification/component/context/AuthProvider';
+import { AuthProvider } from './_core/authentification/component/context/AuthProvider';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <AuthProvider> */}
-          <App />
-    {/* </AuthProvider> */}
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
