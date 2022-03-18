@@ -57,6 +57,8 @@ const SignIn = () => {
                 } else if (error.response.status === 401) {
                     setErrMsg("Veuillez entrer des identifiants valides");
 
+                } else if (error.response.status === 204) {
+                    setErrMsg("No data");
                 }
             }
         }
