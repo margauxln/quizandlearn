@@ -8,13 +8,13 @@ import axios from '../../../../_core/api/axios';
 import { useHistory, Link } from "react-router-dom";
 
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const SIGNUP_URL = '/signup';
-const SIGNIN_URL = '/signin';
+const SIGNUP_URL_BACKEND = '/signup';
+const SIGNIN_URL_FRONTEND = '/signin';
 
 const SignUp = () => {
     const [passwordShown, setPasswordShown] = useState(false);
     const [confirmedPasswordShown, setConfirmedPasswordShown] = useState(false);
-    const [accountError, setAccountError] = useState("");
+    const [errMsg, setErrMsg] = useState('');
     const history = useHistory();
 
     const formik = useFormik({
@@ -48,7 +48,7 @@ const SignUp = () => {
 
         onSubmit: async (values) => {
             try {
-                 const response = await axios.post(SIGNUP_URL, 
+                 const response = await axios.post(SIGNUP_URL_BACKEND, 
                                     JSON.stringify({name : values.name,
                                                     surname: values.surname,
                                                     email: values.email,
@@ -60,10 +60,16 @@ const SignUp = () => {
                                           
                     console.log(response.data);
                     console.log(JSON.stringify(response));
-                    history.push(SIGNIN_URL);
+                    history.push(SIGNIN_URL_FRONTEND);
                     
             } catch (error) {
-                setAccountError('Vous avez déjà un compte, connectez-vous en utilisant le lien ci-dessous');
+                if (!error.response) {
+                    setErrMsg('Aucune réponse du server');
+
+                } else if (error.response.status === 400) {
+                    setErrMsg("Vous avez déjà un compte, connectez-vous en utilisant le lien ci-dessous'");
+
+                }
             }
         }
     });
@@ -208,10 +214,10 @@ const SignUp = () => {
                                         <p id="confirmPasswordError">{formik.errors.confirmPassword}</p>
                                     </span> : null}
                                 
-                            {accountError && 
+                            {errMsg && 
                                 <span className="errorMessage">
                                     <FontAwesomeIcon icon={faInfoCircle} className="errorIcon" />  
-                                    <p id="accountError">{accountError}</p>
+                                    <p id="accountError">{errMsg}</p>
                                 </span>}
                         </div>
                         
@@ -224,7 +230,7 @@ const SignUp = () => {
                         </div>
                         <br/>
 
-                        <p>Vous avez déjà un compte ? <Link to={SIGNIN_URL}> Connectez-vous !</Link></p>
+                        <p>Vous avez déjà un compte ? <Link to={SIGNIN_URL_FRONTEND}> Connectez-vous !</Link></p>
                 </form>
             </section>
         </>     

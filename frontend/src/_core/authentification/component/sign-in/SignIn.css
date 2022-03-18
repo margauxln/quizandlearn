@@ -27,9 +27,9 @@ h2 {
 }
 
 /*Errors*/
+.errorMessage,
 .errorIcon,
-#emailError,
-#passwordError{
+#error {
     color: firebrick;
 }
 
@@ -42,18 +42,16 @@ h2 {
     padding-top: 3px;
 }
 
-.passwordContainer,
-.confirmPasswordContainer{
+.passwordContainer {
     position: relative;
 }
 
-.passwordEye,
-.confirmPasswordEye{
+#passwordEye {
     border: none;
     background-color: transparent;
     position: absolute;
-    top: 35px;
-    right: 10px;
+    top: 33px;
+    right: 8px;
 }
 
 .eye{

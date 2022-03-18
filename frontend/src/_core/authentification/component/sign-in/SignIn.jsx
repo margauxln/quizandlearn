@@ -8,8 +8,8 @@ import axios from '../../../../_core/api/axios';
 import { useState, useContext } from 'react';
 import AuthContext from "../context/AuthProvider";
 
-const SIGNUP_URL = '/signup';
-const LOGIN_URL = '/login';
+const SIGNUP_URL_FRONTEND = '/signup';
+const LOGIN_URL_BACKEND = '/login';
 
 const SignIn = () => {
     const { setAuth } = useContext(AuthContext);
@@ -33,31 +33,37 @@ const SignIn = () => {
 
         onSubmit: async (values) => {
             try {
-                 const response = await axios.post(LOGIN_URL, 
+                 const response = await axios.post(LOGIN_URL_BACKEND, 
                     JSON.stringify({email : values.email,
                                     password: values.password}),
                     {
                         headers: { 'Content-Type': 'application/json' },
                         withCredentials: true
                     });
-                    console.log(JSON.stringify(response?.data));
+
+                    console.log(JSON.stringify(response.data));
                     
-                    /*Optional chaining*/
-                    const accessToken = response?.data?.accessToken;
-                    const user = response?.data?.user;
-                    const password = response?.data?.password;
-                    console.log((response?.data.accessToken));
+                    const accessToken = response.data.accessToken;
+                    const user = response.data.user;
+                    const password = response.data.password;
+                    console.log(((response.data.accessToken)));
+
                     /*Envoyer les roles du backend (it should be an array of roles) puis mettre roles dans objet SetAuth
-                    const roles = response?.data?.roles;
+                    const roles = response.data.roles;
                     */
                     setAuth({user, password, accessToken});
 
                     /*Ajouter URL où l'on veut aller*/
-                    history.push(SIGNUP_URL);
+                    history.push(SIGNUP_URL_FRONTEND);
                      
             } catch (error) {
-                setErrMsg("Veuillez entrer des identifiants valides.");
-        
+                if (!error.response) {
+                    setErrMsg('Aucune réponse du server');
+
+                } else if (error.response.status === 401) {
+                    setErrMsg("Veuillez entrer des identifiants valides");
+
+                }
             }
         }
     });
@@ -114,7 +120,7 @@ const SignIn = () => {
                             aria-describedby="error"
                         />
 
-                        <button onClick={togglePasswordVisiblity} className="passwordEye">
+                        <button id="passwordEye" onClick={togglePasswordVisiblity} >
                                 <FontAwesomeIcon icon={faEye} className="eye"/>
                         </button>
 
@@ -138,7 +144,7 @@ const SignIn = () => {
             </form>
 
             <br/>
-            <p>Nouveau sur la plateforme ? Inscris-toi ici :<Link to={SIGNUP_URL}>Sign Up</Link></p>
+            <p>Nouveau sur la plateforme ? Inscris-toi ici :<Link to={SIGNUP_URL_FRONTEND}>Sign Up</Link></p>
         </div>
     );
 
