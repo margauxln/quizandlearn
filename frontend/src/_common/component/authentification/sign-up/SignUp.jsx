@@ -9,7 +9,9 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const SIGNUP_URL_BACKEND = '/signup';
+
 const SIGNIN_URL_FRONTEND = '/signin';
+
 
 const SignUp = () => {
     const [passwordShown, setPasswordShown] = useState(false);
@@ -60,7 +62,7 @@ const SignUp = () => {
                                           
                     console.log(response.data);
                     console.log(JSON.stringify(response));
-                    navigate(SIGNIN_URL_FRONTEND);
+                    navigate(SIGNIN_URL_FRONTEND );
                     
             } catch (error) {
                 if (!error.response) {

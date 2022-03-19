@@ -9,6 +9,7 @@ import useAuth from "../../../../_common/hooks/UseAuth";
 import { Link, useNavigate } from 'react-router-dom';
 
 const EXPLORE_URL_FRONTEND = '/explore';
+const SIGNUP_URL_FRONTEND = '/signup';
 const LOGIN_URL_BACKEND = '/login';
 
 const SignIn = () => {
@@ -42,13 +43,14 @@ const SignIn = () => {
                         headers: { 'Content-Type': 'application/json' },
                         withCredentials: true
                     });
-                    navigate(EXPLORE_URL_FRONTEND);
-
-                    /* console.log(JSON.stringify(response.data));
-                    console.log(JSON.stringify(response));   */
+                    /* console.log(JSON.stringify(response.data));*/
 
                     const accessToken = response.data.token;
-                    setAuth({email : values.email, password: values.password, accessToken});
+                    setAuth({user : values.email, password: values.password, accessToken});
+
+                    values.email = "";
+                    values.password = "";
+                    navigate(EXPLORE_URL_FRONTEND);
                      
             } catch (error) {
                 if (!error.response) {
@@ -137,7 +139,7 @@ const SignIn = () => {
             </form>
 
             <br/>
-            <p>Nouveau sur la plateforme ? Inscris-toi ici : <Link to={EXPLORE_URL_FRONTEND}>Sign Up</Link></p>
+            <p>Nouveau sur la plateforme ? Inscris-toi ici : <Link to={SIGNUP_URL_FRONTEND}>Sign Up</Link></p>
         </div>
     );
 

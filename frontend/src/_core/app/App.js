@@ -10,18 +10,18 @@ import RequireAuth from '../../_common/component/authentification/require-auth/R
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Layout/>}>
 
         {/* public routes */}
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
 
-        <Route element={<RequireAuth />}>
           {/* we want to protect these routes */}
-          <Route path="/explore" element={<Explore />} />
+        <Route element={<RequireAuth />}>
+          <Route path="/" element={<Layout />}>
+            <Route path="/explore" element={<Explore />} />
+          </Route>
         </Route>
 
-      </Route>
     </Routes>
   );
 }
