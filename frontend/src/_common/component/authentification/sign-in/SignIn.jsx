@@ -78,7 +78,7 @@ const SignIn = () => {
 
             <br/>
             <img src={LogoBlue} className="logo"alt=""></img>  
-            <h1> Se Connecter</h1>
+            <h1 id="SeConnecter"> Se Connecter</h1>
 
             <form onSubmit={formik.handleSubmit}>
 

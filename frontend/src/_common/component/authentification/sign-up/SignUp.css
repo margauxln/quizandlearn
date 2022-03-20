@@ -12,6 +12,7 @@
 h1{
     font-weight: bold;
     font-size: 20px;
+    margin-bottom: 0.5em;
 }
 
 .logo{
@@ -40,13 +41,13 @@ input:focus{
 .buttonContainer{
     display: flex;
     justify-content: center;
+    margin-top: 1.5em;
 }
 
 .submitButton{
     background-color: #2B6FD2;
     color: white;
     font-weight: bold;
-    margin-top: 1.5em;
     cursor: pointer;
 }
 
