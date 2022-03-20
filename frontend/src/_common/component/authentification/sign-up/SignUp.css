@@ -38,6 +38,14 @@ input:focus{
     color: white;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+  border: none;
+  -webkit-text-fill-color: white;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .buttonContainer{
     display: flex;
     justify-content: center;
@@ -78,7 +86,7 @@ input:focus{
 .errorIcon{
     color: firebrick;
     padding-right: 5px;
-    padding-top: 3px;
+    padding-top: 1em;
 }
 
 .passwordContainer,
