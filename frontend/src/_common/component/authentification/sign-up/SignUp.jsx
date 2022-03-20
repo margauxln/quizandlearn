@@ -6,10 +6,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from 'react';
 import axios from '../../../../_core/api/axios';
 import { Link, useNavigate } from 'react-router-dom';
+import LogoBlue from './logoBlue.png';
 
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const SIGNUP_URL_BACKEND = '/signup';
-
 const SIGNIN_URL_FRONTEND = '/signin';
 
 
@@ -86,11 +86,11 @@ const SignUp = () => {
 
     return(
         <>
-             <section className="SignUpContainer">  
-                    <h1>Bienvenu sur Quiz & Learn</h1>
+             <section className="signUpContainer">
+
+                    <img src={LogoBlue} className="logo"alt=""></img>  
+                    <h1>S'inscrire</h1>
                     <br/>
-                    
-                    <h2>S'inscrire</h2>
 
                     <form onSubmit={formik.handleSubmit}>
 
@@ -225,15 +225,16 @@ const SignUp = () => {
                         
                         <div className="buttonContainer">
                             <input 
-                                className="button" 
+                                className={`${"button"} ${"submitButton"}`} 
                                 type="submit" 
-                                value="Connexion"
+                                value="Inscription"
                             />
                         </div>
                         <br/>
-
-                        <p>Vous avez déjà un compte ? <Link to={SIGNIN_URL_FRONTEND}> Connectez-vous !</Link> </p>
                 </form>
+                    <p>Vous avez déjà un compte ?</p> 
+                    <Link to={SIGNIN_URL_FRONTEND} className="linkToOtherPage"> Connectez-vous</Link>
+                
             </section>
         </>     
     );

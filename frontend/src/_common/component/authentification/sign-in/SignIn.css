@@ -1,13 +1,12 @@
-h1 {
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.LoginContainer{
+.loginContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 50px;
+    justify-content: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #FEC0C0;
 }
 
 .field {
@@ -24,7 +23,7 @@ h1 {
 
 h2 {
     font-weight: bold;
-}
+} */
 
 /*Errors*/
 .errorMessage,
@@ -50,11 +49,11 @@ h2 {
     border: none;
     background-color: transparent;
     position: absolute;
-    top: 33px;
+    top: 10px;
     right: 8px;
 }
 
 .eye{
     color: 	#D3D3D3;
     height: 18px;
-}
+} 
