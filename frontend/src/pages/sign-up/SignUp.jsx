@@ -202,7 +202,7 @@ const SignUp = () => {
                                     onBlur={formik.handleBlur}
                                     value = {formik.values.confirmPassword}
                                     aria-describedby="confirmPasswordError"
-                                    placeholder="Confirmation du mot de passe"
+                                    placeholder="Confirmation mot de passe"
                                 />
                                 
                                 <button onClick={toggleConfirmedPasswordVisiblity} className="confirmPasswordEye">
