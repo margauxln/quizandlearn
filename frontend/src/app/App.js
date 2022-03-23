@@ -1,11 +1,11 @@
 import 'bulma/css/bulma.min.css';
 import React from "react";
-import SignIn from '../../_common/component/authentification/sign-in/SignIn';
-import SignUp from "../../_common/component/authentification/sign-up/SignUp";
+import SignIn from '../pages/sign-in/SignIn';
+import SignUp from '../pages/sign-up/SignUp';
 import { Routes, Route } from "react-router-dom";
-import Layout from '../../_common/component/layout/Layout';
-import Explore from '../../business/explore/component/Explore';
-import RequireAuth from '../../_common/component/authentification/require-auth/RequireAuth';
+import Layout from '../components/layout/Layout';
+import Explore from '../pages/explore/Explore';
+import RequireAuth from '../context/RequireAuth';
 
 const App = () => {
   return (
@@ -16,8 +16,8 @@ const App = () => {
         <Route path="signup" element={<SignUp />} />
 
           {/* we want to protect these routes */}
-        <Route element={<RequireAuth />}>
-          <Route path="/" element={<Layout />}>
+          <Route element={<RequireAuth />}>
+            <Route path="/" element={<Layout />}>
             <Route path="/explore" element={<Explore />} />
           </Route>
         </Route>

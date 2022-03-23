@@ -1,12 +1,12 @@
 import './SignUp.css';
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { faInfoCircle, faEye } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { faInfoCircle, faEye } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
-import axios from '../../../../_core/api/axios';
+import axios from '../../api/axios';
 import { Link, useNavigate } from 'react-router-dom';
-import LogoBlue from './logoBlue.png';
+import LogoBlue from '../../assets/logoBlue.png';
 
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const SIGNUP_URL_BACKEND = '/signup';

@@ -3,11 +3,11 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { faInfoCircle, faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from '../../../../_core/api/axios';
+import axios from '../../api/axios';
 import { useState } from 'react';
-import useAuth from "../../../../_common/hooks/UseAuth";
+import useAuth from "../../hooks/UseAuth";
 import { Link, useNavigate } from 'react-router-dom';
-import LogoBlue from '../sign-up/logoBlue.png';
+import LogoBlue from '../../assets/logoBlue.png';
 
 const EXPLORE_URL_FRONTEND = '/explore';
 const SIGNUP_URL_FRONTEND = '/signup';
