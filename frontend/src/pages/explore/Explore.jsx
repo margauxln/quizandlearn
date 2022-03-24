@@ -1,6 +1,12 @@
+import Header from "../../components/header/Header";
+
 const Explore = () => {
     return(
-        <div>Page explorer !</div>
+        <>
+            <Header/>
+            <div>Page explorer !</div>
+        </>
+        
     )
 };
 
