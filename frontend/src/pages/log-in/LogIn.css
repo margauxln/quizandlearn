@@ -1,0 +1,55 @@
+.loginContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #FEC0C0;
+}
+
+.field {
+    max-width: 300px;
+}
+
+.buttonContainer{
+    align-items: center;
+}
+
+.button{
+    margin-left: 10px;
+}
+
+/*Errors*/
+.errorMessage,
+.errorIcon,
+#error {
+    color: firebrick;
+}
+
+.errorMessage{
+    display: flex;
+}
+
+.errorIcon{
+    padding-right: 5px;
+    padding-top: 3px;
+}
+
+.passwordContainer {
+    position: relative;
+}
+
+#passwordEye {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 10px;
+    right: 8px;
+}
+
+.eye{
+    color: 	#D3D3D3;
+    height: 18px;
+} 

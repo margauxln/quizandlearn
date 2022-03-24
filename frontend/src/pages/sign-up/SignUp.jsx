@@ -1,21 +1,23 @@
 import './SignUp.css';
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { faInfoCircle, faEye } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { faInfoCircle, faEye } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
-import axios from '../../../../_core/api/axios';
-import { useHistory, Link } from "react-router-dom";
+import axios from '../../api/axios';
+import { Link, useNavigate } from 'react-router-dom';
+import LogoBlue from '../../assets/logoBlue.png';
 
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const SIGNUP_URL = '/signup';
-const SIGNIN_URL='/signin';
+const SIGNUP_URL_BACKEND = '/signup';
+const LOGIN_URL_FRONTEND = '/login';
+
 
 const SignUp = () => {
     const [passwordShown, setPasswordShown] = useState(false);
     const [confirmedPasswordShown, setConfirmedPasswordShown] = useState(false);
-    const [accountError, setAccountError] = useState("");
-    const history = useHistory();
+    const [errMsg, setErrMsg] = useState('');
+    const navigate = useNavigate();
 
     const formik = useFormik({
 
@@ -48,22 +50,28 @@ const SignUp = () => {
 
         onSubmit: async (values) => {
             try {
-                 const response = await axios.post(SIGNUP_URL, 
+                 const response = await axios.post(SIGNUP_URL_BACKEND, 
                                     JSON.stringify({name : values.name,
                                                     surname: values.surname,
                                                     email: values.email,
                                                     password: values.password}),
                                     {
                                         headers: { 'Content-Type': 'application/json' },
-                                        withCredentials: false
+                                        withCredentials: true
                                     });
                                           
                     console.log(response.data);
                     console.log(JSON.stringify(response));
-                    history.push(SIGNIN_URL);
+                    navigate(LOGIN_URL_FRONTEND );
                     
             } catch (error) {
-                setAccountError('Vous avez déjà un compte, connectez-vous en utilisant le lien ci-dessous');
+                if (!error.response) {
+                    setErrMsg('Aucune réponse du server');
+
+                } else if (error.response.status === 400) {
+                    setErrMsg("Vous avez déjà un compte, connectez-vous en utilisant le lien ci-dessous'");
+
+                }
             }
         }
     });
@@ -78,11 +86,11 @@ const SignUp = () => {
 
     return(
         <>
-             <section className="SignUpContainer">  
-                    <h1>Bienvenu sur Quiz & Learn</h1>
+             <section className="signUpContainer">
+
+                    <img src={LogoBlue} className="logo"alt=""></img>  
+                    <h1>S'inscrire</h1>
                     <br/>
-                    
-                    <h2>S'inscrire</h2>
 
                     <form onSubmit={formik.handleSubmit}>
 
@@ -194,7 +202,7 @@ const SignUp = () => {
                                     onBlur={formik.handleBlur}
                                     value = {formik.values.confirmPassword}
                                     aria-describedby="confirmPasswordError"
-                                    placeholder="Confirmation du mot de passe"
+                                    placeholder="Confirmation mot de passe"
                                 />
                                 
                                 <button onClick={toggleConfirmedPasswordVisiblity} className="confirmPasswordEye">
@@ -208,23 +216,25 @@ const SignUp = () => {
                                         <p id="confirmPasswordError">{formik.errors.confirmPassword}</p>
                                     </span> : null}
                                 
-                            {accountError && 
+                            {errMsg && 
                                 <span className="errorMessage">
                                     <FontAwesomeIcon icon={faInfoCircle} className="errorIcon" />  
-                                    <p id="accountError">{accountError}</p>
+                                    <p id="accountError">{errMsg}</p>
                                 </span>}
                         </div>
                         
                         <div className="buttonContainer">
-                            <input className="button" 
-                                   type="submit" 
-                                   value="Connexion"
+                            <input 
+                                className={`${"button"} ${"submitButton"}`} 
+                                type="submit" 
+                                value="Inscription"
                             />
                         </div>
                         <br/>
-
-                        <p>Vous avez déjà un compte ? <Link to={SIGNIN_URL}> Connectez-vous !</Link></p>
                 </form>
+                    <p>Vous avez déjà un compte ?</p> 
+                    <Link to={LOGIN_URL_FRONTEND} className="linkToOtherPage"> Connectez-vous</Link>
+                
             </section>
         </>     
     );
