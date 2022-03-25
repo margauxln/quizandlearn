@@ -1,0 +1,20 @@
+.upperPartHeaderContainer {
+    display: flex;
+    max-width: 100%;
+    height: 100px;
+    justify-content: space-between;
+    background-color: #FEC0C0;
+}
+
+.logoHeader{
+    height: 100px;
+    margin-left: 3em;
+}
+
+.menuSearchBar {
+    width: 1000px;
+}
+
+button {
+    height: 50px;
+}

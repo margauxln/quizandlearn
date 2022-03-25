@@ -13,6 +13,7 @@ const App = () => {
         {/* public routes */}
         <Route path="login" element={<LogIn />} />
         <Route path="signup" element={<SignUp />} />
+        <Route path="/quizzes" element={<Explore />} />
 
         {/* we want to protect these routes */}
         <Route element={<RequireAuth />}>
