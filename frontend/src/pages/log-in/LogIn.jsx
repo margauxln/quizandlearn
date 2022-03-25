@@ -115,7 +115,7 @@ const LogIn = () => {
                         </span> : null}
                 </div>
 
-                <div className={`${"field"} ${"passwordContainer"}`}>
+                <div className="field passwordContainer">
                     <label htmlFor="password" className="sr-only">Password</label>
                         <input 
                             id="password"
@@ -145,7 +145,7 @@ const LogIn = () => {
 
                 <div className="buttonContainer">
                     <input 
-                        className={`${"button"} ${"submitButton"}`} 
+                        className="button submitButton"
                         type="submit" value="Log In"/>
                 </div>
                 {/*Messages d'erreurs du serveur ou mauvais identifiants: */}
