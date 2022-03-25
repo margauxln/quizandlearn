@@ -1,9 +1,10 @@
 const Quiz = require('../models/quiz');
+const Category = require('../models/category');
 
 exports.postQuiz = async (req, res, next) => {
+
     const createQuiz = await new Quiz({...req.body})
     if(createQuiz){
-      console.log(createQuiz);
       res.status(200).send({ message: 'Quiz créé' });
       createQuiz.save();
     }

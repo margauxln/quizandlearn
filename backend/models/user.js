@@ -13,18 +13,17 @@ const userSchema = mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   // photo: String,
-  // contacts: [Contact],
+  //contacts: [Contact],
   // roles: {
   //   type: String,
   //   enum : ['user','admin'],
   //   default: 'user'
   // },
-  // subscription_date: { type : Date, default: Date.now },
-  // favorite_quizzes: [Quiz],
-  // created_quizzes: [Quiz],
+  favorite_quizzes: [{type: mongoose.ObjectId, ref: 'Quiz'}],
+  created_quizzes: [{type: mongoose.ObjectId, ref: 'Quiz'}],
   // completions: [Completion],
-  // ratings:[Rating],
-  // reportings:[Reporting],
+  ratings: [{type: mongoose.ObjectId, ref: 'Rating'}],
+  reportings: [{type: mongoose.ObjectId, ref: 'Reporting'}],
   },
   {
     timestamps: true
