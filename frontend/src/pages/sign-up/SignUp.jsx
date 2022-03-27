@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { faInfoCircle, faEye } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
-import axios from '../../api/axios';
+import axios from '../../config/axios';
 import { Link, useNavigate } from 'react-router-dom';
 import LogoBlue from '../../assets/logoBlue.png';
 
@@ -69,7 +69,7 @@ const SignUp = () => {
                     setErrMsg('Aucune réponse du server');
 
                 } else if (error.response.status === 400) {
-                    setErrMsg("Vous avez déjà un compte, connectez-vous en utilisant le lien ci-dessous'");
+                    setErrMsg("Vous avez déjà un compte, connectez-vous en utilisant le lien ci-dessous");
 
                 }
             }

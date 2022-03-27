@@ -14,7 +14,7 @@ const Header = () => {
                            placeholder="Search"/>
                 </div>
 
-                <div className="buttonContainer">
+                <div className="buttonContainertio">
                     <button>Log Out </button>
                 </div>
                 
