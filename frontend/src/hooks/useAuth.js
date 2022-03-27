@@ -6,10 +6,8 @@ import { errors } from '../config/forms';
 import { actions, useStateValue } from '../providers/GlobalProvider';
 
 export const useAuth = () => {
-
-    const [{user}, dispatch] = useStateValue();
-
     const navigate = useNavigate();
+    const [{user}, dispatch] = useStateValue();
 
     const login = async (values, onError) => {
         try {
@@ -66,14 +64,9 @@ export const useAuth = () => {
         }
     };
 
-    const logout = () => {
-
-    };
-
     return {
         user,
-        login,
-        logout
+        login
     }
 
 };

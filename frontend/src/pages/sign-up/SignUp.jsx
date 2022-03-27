@@ -7,13 +7,15 @@ import { useState } from 'react';
 import axios from '../../config/axios';
 import { Link, useNavigate } from 'react-router-dom';
 import LogoBlue from '../../assets/logoBlue.png';
+import { useSignUp } from "../../hooks/useSignUp";
 
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const SIGNUP_URL_BACKEND = '/signup';
 const LOGIN_URL_FRONTEND = '/login';
 
-
 const SignUp = () => {
+    //entre {} car ça retournait un objet
+    const {signup} = useSignUp();
+
     const [passwordShown, setPasswordShown] = useState(false);
     const [confirmedPasswordShown, setConfirmedPasswordShown] = useState(false);
     const [errMsg, setErrMsg] = useState('');
@@ -48,31 +50,11 @@ const SignUp = () => {
                 .required("Champ obligatoire")
         }),
 
-        onSubmit: async (values) => {
-            try {
-                 const response = await axios.post(SIGNUP_URL_BACKEND, 
-                                    JSON.stringify({name : values.name,
-                                                    surname: values.surname,
-                                                    email: values.email,
-                                                    password: values.password}),
-                                    {
-                                        headers: { 'Content-Type': 'application/json' },
-                                        withCredentials: true
-                                    });
-                                          
-                    console.log(response.data);
-                    console.log(JSON.stringify(response));
-                    navigate(LOGIN_URL_FRONTEND );
-                    
-            } catch (error) {
-                if (!error.response) {
-                    setErrMsg('Aucune réponse du server');
-
-                } else if (error.response.status === 400) {
-                    setErrMsg("Vous avez déjà un compte, connectez-vous en utilisant le lien ci-dessous");
-
-                }
-            }
+         //Submit du formulaire au serveur
+         onSubmit: async (values) => {
+                signup(values, (message) => {
+                setErrMsg(message);
+            });
         }
     });
 
