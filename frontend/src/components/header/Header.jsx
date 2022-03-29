@@ -1,7 +1,11 @@
 import LogoBlue from '../../assets/logoBlue.png';
 import "./Header.css";
+import { useAuth } from "../../hooks/useAuth";
 
 const Header = () => {
+
+    const {logout} = useAuth();
+
     return (
         <nav>
             <section className="upperPartHeaderContainer">
@@ -15,7 +19,7 @@ const Header = () => {
                 </div>
 
                 <div className="buttonContainertio">
-                    <button>Log Out </button>
+                    <button onClick={logout}>Log Out </button>
                 </div>
                 
                 <div>C'est moi</div>

@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { api } from '../config/api';
 import { actions, useStateValue } from '../contexts/AuthProvider';
 
-const EXPLORE_URL_FRONTEND = '/login';
+const EXPLORE_URL_FRONTEND = '/quizzes';
 
-export const useLogIn = () => {
+export const useAuth = () => {
     const navigate = useNavigate();
     const [{user}, dispatch] = useStateValue();
 
@@ -58,9 +58,16 @@ export const useLogIn = () => {
         }
     };
 
+    const logout = () => {
+        // Je supprime le local storage avec la clé user
+        localStorage.clear("user");
+        navigate('/');
+    };
+
     return {
         user,
-        login
+        login,
+        logout
     }
 
 };

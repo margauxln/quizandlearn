@@ -2,7 +2,7 @@ import axios from '../config/axios';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../config/api';
 
-const LOGIN_URL_FRONTEND = '/login';
+const LOGIN_URL_FRONTEND = '/';
 
 export const useSignUp = () => {
     const navigate = useNavigate();

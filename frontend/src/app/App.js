@@ -5,24 +5,30 @@ import SignUp from '../pages/sign-up/SignUp';
 import { Routes, Route } from "react-router-dom";
 import Explore from '../pages/explore/Explore';
 import { AuthProvider } from '../contexts/AuthProvider';
+import RequireToken from '../contexts/RequireToken';
 import RequireAuth from '../contexts/RequireAuth';
 
 const App = () => {
   
   return (
     <AuthProvider>
-      <RequireAuth>
+      <RequireToken>
         <Routes>
+          
             {/* public routes */}
-            <Route path="login" element={<LogIn />} />
+            <Route path="/" element={<LogIn />} />
             <Route path="signup" element={<SignUp />} />
-            <Route path="/quizzes" element={<Explore />} />
 
             {/* we want to protect these routes */}
-            <Route path="/quizzes" element={<Explore />} />
+            <Route element={<RequireAuth />}>
+              <Route path="/quizzes" element={<Explore />} />
+            </Route>
+
+            {/* Page 404 - qui n'exite pas dans l'appli */}
+            <Route path="*" element={<p>There's nothing here!</p>}/>
 
         </Routes>
-      </RequireAuth>
+      </RequireToken>
     </AuthProvider>
   );
 }

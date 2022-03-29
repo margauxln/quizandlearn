@@ -7,14 +7,14 @@ import axios from '../../config/axios';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import LogoBlue from '../../assets/logoBlue.png';
-import { useLogIn } from "../../hooks/useLogIn";
+import { useAuth } from "../../hooks/useAuth";
 
 const SIGNUP_URL_FRONTEND = '/signup';
 
-const LogIn = () => {   
-    //entre {} car ça retournait un objet
-    const {login} = useLogIn();
-
+const LogIn = () => {
+   
+    const {login} = useAuth();
+    
     const [errMsg, setErrMsg] = useState('');
     const [passwordShown, setPasswordShown] = useState(false);
 
@@ -35,8 +35,8 @@ const LogIn = () => {
 
         //Submit du formulaire au serveur
         onSubmit: async (values) => {
-            login(values, (message) => {
-                setErrMsg(message);
+            login(values, (error) => {
+                setErrMsg(error);
             });
         }
     });
@@ -69,7 +69,6 @@ const LogIn = () => {
                             onBlur={formik.handleBlur}
                             value = {formik.values.email}
                             maxLength="24"
-                            aria-describedby="error"
                             placeholder = "E-mail" 
                         />
                     {/* Si la personne se trouve dans le champs et il y a des erreurs dans l'e-mail, alors on verra les erreurs*/}
@@ -81,7 +80,7 @@ const LogIn = () => {
                         </span> : null}
                 </div>
 
-                <div className={`${"field"} ${"passwordContainer"}`}>
+                <div className="field passwordContainer">
                     <label htmlFor="password" className="sr-only">Password</label>
                         <input 
                             id="password"
@@ -93,7 +92,6 @@ const LogIn = () => {
                             onBlur={formik.handleBlur}
                             value = {formik.values.password}
                             maxLength="24"
-                            aria-describedby="error"
                             placeholder="password"
                         />
 
@@ -111,7 +109,7 @@ const LogIn = () => {
 
                 <div className="buttonContainer">
                     <input 
-                        className={`${"button"} ${"submitButton"}`} 
+                        className="button submitButton"
                         type="submit" value="Log In"/>
                 </div>
                 {/*Messages d'erreurs du serveur ou mauvais identifiants: */}
@@ -124,7 +122,7 @@ const LogIn = () => {
 
             <br/>
             <p>Nouveau sur la plateforme ? </p> 
-            <Link to={SIGNUP_URL_FRONTEND} className="linkToOtherPage">Inscrivez- </Link>
+            <Link to={SIGNUP_URL_FRONTEND} className="linkToOtherPage">Inscrivez-vous</Link>
         </div>
     );
 

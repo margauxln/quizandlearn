@@ -1,9 +1,9 @@
 import Header from "../../components/header/Header";
-import { useLogIn } from "../../hooks/useLogIn";
+import { useAuth } from "../../hooks/useAuth";
 
 const Explore = () => {
 
-    const {user} = useLogIn();
+    const {user} = useAuth();
     console.log(user);
     //contient userId (du back)
 

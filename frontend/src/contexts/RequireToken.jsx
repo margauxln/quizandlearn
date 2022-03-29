@@ -1,12 +1,12 @@
-import { useLogIn } from "../hooks/useLogIn";
+import { useAuth } from "../hooks/useAuth";
 import jwt_decode from "jwt-decode";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 //ici on veut voir si la session de l'utilisateur a expirée ou pas (session = 24h on le voit en back)
-const RequireAuth = (props) => {
+const RequireToken = ({children}) => {
 
-    const {user} = useLogIn();
+    const {user} = useAuth();
     const navigate = useNavigate();
 
     const isValidToken = (token) => {
@@ -28,7 +28,7 @@ const RequireAuth = (props) => {
     //Si le token n'est plus valide => l'utilisateur sera redirigé vers la page log in
     // useEffect hook avec [] à la fin => signifie que cette fonction sera déclanchée au rechargement de la page (par l'utilisateur)
     useEffect(() => {
-        if(isValidToken(user.token) === false) {
+        if(user && isValidToken(user.token) === false) {
             navigate('/login');
         }
     }, []);
@@ -37,10 +37,10 @@ const RequireAuth = (props) => {
     //ça retourne tous les enfants de l'application = cette fonction est appliquée partout ???
     return(
         <>
-            {props.children}
+            {children}
         </>
         
     )
 };
 
-export default RequireAuth;
+export default RequireToken;
