@@ -7,13 +7,13 @@ import axios from '../../config/axios';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import LogoBlue from '../../assets/logoBlue.png';
-import { useAuth } from "../../hooks/useAuth";
+import { useLogIn } from "../../hooks/useLogIn";
 
 const SIGNUP_URL_FRONTEND = '/signup';
 
 const LogIn = () => {   
     //entre {} car ça retournait un objet
-    const {login} = useAuth();
+    const {login} = useLogIn();
 
     const [errMsg, setErrMsg] = useState('');
     const [passwordShown, setPasswordShown] = useState(false);

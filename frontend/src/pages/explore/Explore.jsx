@@ -1,10 +1,9 @@
 import Header from "../../components/header/Header";
-import { useAuth } from "../../hooks/useAuth";
-import jwt_decode from "jwt-decode";
+import { useLogIn } from "../../hooks/useLogIn";
 
 const Explore = () => {
 
-    const {user} = useAuth();
+    const {user} = useLogIn();
     console.log(user);
     //contient userId (du back)
 
