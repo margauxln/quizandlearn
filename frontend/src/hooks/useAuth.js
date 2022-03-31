@@ -2,6 +2,7 @@ import axios from '../config/axios';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../config/api';
 import { actions, useStateValue } from '../context/AuthProvider';
+import { errorDisplayed } from '../config/form';
 
 const EXPLORE_URL_FRONTEND = '/quizzes';
 
@@ -49,10 +50,10 @@ export const useAuth = () => {
             //on test que le 2e paramètre soit une fonction (on s'assure qu'il y ait un 2e argument et qu'il soit une fonction)
             if(typeof onError === "function") {
                 if (!error.response) {
-                    onError("Aucune réponse du server");
+                    onError(errorDisplayed.server);
 
                 } else if (error.response.status === 401) {
-                    onError("Veuillez entrer des identifiants valides");
+                    onError(errorDisplayed.credentials);
                 }
             }
         }

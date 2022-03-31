@@ -1,6 +1,7 @@
 import axios from '../config/axios';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../config/api';
+import { errorDisplayed } from '../config/form';
 
 const LOGIN_URL_FRONTEND = '/';
 
@@ -26,10 +27,10 @@ export const useSignUp = () => {
        } catch (error) {
            if(typeof onError === "function") {
                 if (!error.response) {
-                    onError("Aucune réponse du server");
+                    onError(errorDisplayed.server);
 
                 } else if (error.response.status === 400) {
-                    onError("Vous avez déjà un compte, connectez-vous en utilisant le lien ci-dessous");
+                    onError(errorDisplayed.existingAccount);
 
                 }
             }
