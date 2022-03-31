@@ -24,8 +24,8 @@ const App = () => {
               <Route path="/quizzes" element={<Explore />} />
             </Route>
 
-            {/* Page 404 - qui n'exite pas dans l'appli */}
-            <Route path="*" element={<p>There's nothing here!</p>}/>
+            {/* route qui n'existe pas - redirection page Explore*/}
+            <Route path="*" element={<Explore />} />
 
         </Routes>
     </AuthProvider>
