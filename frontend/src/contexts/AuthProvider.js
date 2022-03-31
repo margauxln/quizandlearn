@@ -6,8 +6,6 @@ export const AuthContext = createContext();
 //on récupére l'utilisateur (son mail + token)
 const userData = localStorage.getItem("user");
 
-console.log(userData);
-
 // déclaration des states globales
 const initialState = {
     //quand tu recharges la page, quand les données de l'utilisateur existent on les récupère du local storage
@@ -22,16 +20,16 @@ export const actions = {
 };
 
 //user : je veux le récupérer partout  du coup auth context
-
-// HOOK USE REDUCER = méthode qui va permettre de mettre à jour l'état global de l'application
+// HOOK USE REDUCER = méthode qui va permettre de mettre à jour l'"initial value" de l'état global de l'application
 const reducer = (state, action) => {
     if (action) {
         switch (action.payload) {
             case actions.HANDLE_USER:
                 return {
+					// copie de l'état initial
                     ...state,
                     //ici on ve récupérer les données de l'utilisateur
-                    user: action.payload
+                    user: action.data
                 }
             default:
                 return state;

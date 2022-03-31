@@ -13,7 +13,7 @@ export const useAuth = () => {
         try {
             //1--ATTENTE REPONSE DU SERVER
             //la fonction axios.post se trouve dans le dossier hooks
-             const response = await axios.post(api.login, 
+             const response = await axios.post(api.login,
                 JSON.stringify({email : values.email,
                                 password: values.password}),
                 {
@@ -29,28 +29,28 @@ export const useAuth = () => {
                     email: values.email,
                     token: accessToken
                 };
-                
+
                 //locale storage n'accepte uniquement les chaînes de charactère (JSON.str convertit objet en chaîne)
                 localStorage.setItem("user", JSON.stringify(userData));
- 
+
                 // 3--MISE A JOUR DU CONTEXTE GLOBAL DE L'APPLICATION
                 //on passe l'Auth Provider = on met à jour instantanéement tous les composants de l'application
-                //en leur passant les données de l'user(son email et son token) 
+                //en leur passant les données de l'user(son email et son token)
                 dispatch({
-                    action: actions.HANDLE_USER,
-                    //data correspond à params.data
-                    data: userData
+					payload: actions.HANDLE_USER,
+                    //data correspond à action.data
+					data: userData
                 });
 
                 //4--NAVIGATION en FRONT vers la PAGE EXPLORE
                 navigate(EXPLORE_URL_FRONTEND);
-                 
+
         } catch (error) {
             //on test que le 2e paramètre soit une fonction (on s'assure qu'il y ait un 2e argument et qu'il soit une fonction)
             if(typeof onError === "function") {
                 if (!error.response) {
                     onError("Aucune réponse du server");
-    
+
                 } else if (error.response.status === 401) {
                     onError("Veuillez entrer des identifiants valides");
                 }
@@ -61,6 +61,12 @@ export const useAuth = () => {
     const logout = () => {
         // Je supprime le local storage avec la clé user
         localStorage.clear("user");
+
+        //ici je nettoye l'état global de l'application de l'user
+		dispatch({
+			payload: actions.HANDLE_USER,
+			data: null
+		});
         navigate('/');
     };
 
