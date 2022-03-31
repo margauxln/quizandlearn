@@ -1,7 +1,7 @@
 import 'bulma/css/bulma.min.css';
 import React from "react";
-import LogIn from '../pages/LogIn/LogIn';
-import SignUp from '../pages/SignUp/SignUp';
+import Login from '../pages/Login/Login';
+import Signup from '../pages/Signup/Signup';
 import { Routes, Route } from "react-router-dom";
 import Explore from '../pages/Explore/Explore';
 import { AuthProvider } from '../context/AuthProvider';
@@ -15,8 +15,8 @@ const App = () => {
 
             {/* public routes */}
             <Route element={<RequireAuth onlyPublic={true}/>}>
-              <Route path="/" element={<LogIn />} />
-              <Route path="signup" element={<SignUp />} />
+              <Route path="/" element={<Login />} />
+              <Route path="signup" element={<Signup />} />
             </Route>
 
             {/* we want to protect these routes */}

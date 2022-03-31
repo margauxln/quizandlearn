@@ -8,7 +8,7 @@
 
 #signUpContainer{
     background-color: #FEC0C0;
-    padding-top: 70px;
+    padding-top: 50px;
     max-width: 290px;
     margin: 0 auto;
     text-align: center;
@@ -79,6 +79,7 @@
 .errorContentSignUp{
     color: firebrick;
     padding-top: 0.3em;
+    text-align: start;
 }
 
 .errorMessageSignUp{
@@ -89,7 +90,7 @@
 .errorIconSignUp{
     color: firebrick;
     padding-left: 3px;
-    padding-right: 5px;
+    padding-right: 7px;
     padding-top: 0.5em;
 }
 

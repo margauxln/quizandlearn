@@ -1,4 +1,4 @@
-import "./LogIn.css";
+import "./Login.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { faInfoCircle, faEye } from "@fortawesome/free-solid-svg-icons";

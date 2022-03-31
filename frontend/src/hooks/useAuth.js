@@ -53,7 +53,7 @@ export const useAuth = () => {
                     onError(errorDisplayed.server);
 
                 } else if (error.response.status === 401) {
-                    onError(errorDisplayed.credentials);
+                    onError(errorDisplayed.invalidCredentials);
                 }
             }
         }
