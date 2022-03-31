@@ -1,13 +1,20 @@
-#signUpContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+#PageSignUpContainer{
+    width: 100%;
     position: absolute;
     min-height: 1000px;
-    height: 100%;
     width: 100%;
     background-color: #FEC0C0;
+}
+
+#signUpContainer{
+    background-color: #FEC0C0;
+    padding-top: 70px;
+    max-width: 290px;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: center;
+    min-height: 100%;
+    width: 100%;
 }
 
 #signUpTitre{
@@ -28,7 +35,7 @@
 .formSignUp textarea {
     background-color : #0E835B;
     color: white;
-    width: 290px;
+    width: 100%;
     font-family: "Sporting", "sans-serif";
 }
 
@@ -51,8 +58,8 @@
 
 /*Buttons*/
 .signUpSubmit{
-    display: flex;
-    justify-content: center;
+     display:block;
+    text-align:center; 
     margin-top: 1.5em;
 }
 
@@ -76,11 +83,12 @@
 
 .errorMessageSignUp{
     display: flex;
-    
+    flex-direction: row;   
 }
 
 .errorIconSignUp{
     color: firebrick;
+    padding-left: 3px;
     padding-right: 5px;
     padding-top: 0.5em;
 }

@@ -65,16 +65,19 @@ const SignUp = () => {
     };
 
     return(
-        <>
-             <section id="signUpContainer">
+        <div id="PageSignUpContainer">
 
+             <section id="signUpContainer">
                     <img src={LogoBlue} id="logoSignUp" alt=""></img>  
                     <h1 id="signUpTitre">S'inscrire</h1>
                     <br/>
 
                     <form onSubmit={formik.handleSubmit} className="formSignUp">
 
-                        <div className="field">
+                    <div>
+                        
+                    </div>
+                        <div className="field SignUpfield">
                             <label htmlFor="name" className="sr-only">Prénom*</label>
                                 <input 
                                     id="name"
@@ -96,7 +99,7 @@ const SignUp = () => {
                                 </span> : null}
                         </div>
 
-                        <div className="field">
+                        <div className="field SignUpfield">
                             <label htmlFor="nom" className="sr-only">Nom</label>
                                 <input 
                                     id="nom"
@@ -118,7 +121,7 @@ const SignUp = () => {
                                     </span> : null}
                         </div>
 
-                        <div className="field">
+                        <div className="field SignUpfield">
                             <label htmlFor="email" className="sr-only">E-mail</label>
                                 <input 
                                     id="email"
@@ -211,7 +214,7 @@ const SignUp = () => {
                     < Link to={LOGIN_URL_FRONTEND} id="linkToSignInPage"> Connectez-vous</Link>
                 
             </section>
-        </>     
+        </div>     
     );
 }
 
