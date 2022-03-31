@@ -62,7 +62,7 @@ export const useAuth = () => {
         // Je supprime le local storage avec la clé user
         localStorage.clear("user");
 
-        //ici je nettoye l'état global de l'application de l'user
+        //ici je reinitialise l'état global de l'application à null (donc on enlève l'utilisateur de data)
 		dispatch({
 			payload: actions.HANDLE_USER,
 			data: null

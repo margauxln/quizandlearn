@@ -1,63 +1,62 @@
-.signUpContainer{
+#signUpContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: absolute;
+    min-height: 1000px;
     height: 100%;
     width: 100%;
     background-color: #FEC0C0;
 }
 
-h1{
+#signUpTitre{
     font-weight: bold;
     font-size: 20px;
     margin-bottom: 0.5em;
     font-family: "Sporting", "sans-serif";
 }
 
-.logo{
+#logoSignUp{
     width: 150px;
 }
 
-.field {
-    max-width: 300px;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"], 
-textarea {
+/*Form Inputs*/
+.formSignUp input[type="text"],
+.formSignUp input[type="email"],
+.formSignUp input[type="password"], 
+.formSignUp textarea {
     background-color : #0E835B;
     color: white;
-    width: 275px;
+    width: 290px;
     font-family: "Sporting", "sans-serif";
 }
 
-input[type="text"]::placeholder,
-input[type="email"]::placeholder,
-input[type="password"]::placeholder,
-input:focus{
+.formSignUp input[type="text"]::placeholder,
+.formSignUp input[type="email"]::placeholder,
+.formSignUp input[type="password"]::placeholder,
+.formSignUp input:focus{
     color: white;
     font-family: "Sporting", "sans-serif";
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus {
+.formSignUp input:-webkit-autofill,
+.formSignUp input:-webkit-autofill:hover, 
+.formSignUp input:-webkit-autofill:focus {
   border: none;
   -webkit-text-fill-color: white;
   transition: background-color 5000s ease-in-out 0s;
   font-family: "Sporting", "sans-serif";
 }
 
-.buttonContainer{
+/*Buttons*/
+.signUpSubmit{
     display: flex;
     justify-content: center;
     margin-top: 1.5em;
 }
 
-.submitButton{
+.signUpSubmitButton{
     background-color: #2B6FD2;
     color: white;
     font-weight: bold;
@@ -65,61 +64,55 @@ input:-webkit-autofill:focus {
     cursor: pointer;
 }
 
-.submitButton:hover{
+.signUpSubmitButton:hover{
     color: white; 
 }
 
-.linkToOtherPage{
-    color: #2B6FD2;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
 /*Errors*/
-#accountError,
-#nameError,
-#surNameError,
-#emailError,
-#passwordError,
-#confirmPasswordError {
+.errorContentSignUp{
     color: firebrick;
+    padding-top: 0.3em;
 }
 
-.errorMessage{
+.errorMessageSignUp{
     display: flex;
+    
 }
 
-.errorIcon{
+.errorIconSignUp{
     color: firebrick;
     padding-right: 5px;
-    padding-top: 1em;
+    padding-top: 0.5em;
 }
 
-.passwordContainer,
-.confirmPasswordContainer{
+/*password*/
+.passwordContainerSignUp{
     position: relative;
 }
 
-.passwordEye,
-.confirmPasswordEye{
+.passwordEyeSignUp{
     border: none;
     background-color: transparent;
     position: absolute;
-    top: 10px;
-    right: 8px;
+    top: -3px;
+    right: 12px;
 }
 
-.eye{
+.eyeSignUp{
     color: 	#D3D3D3;
     height: 18px;
 }
 
-p{
+/*last elements*/
+.accountQuestion{
     font-size: 15px;
     padding-top: 1em;
     font-family: "Sporting", "sans-serif";
 }
 
-.linkToOtherPage{
+#linkToSignInPage{
+    color: #2B6FD2;
+    font-weight: bold;
+    text-decoration: underline;
     padding-top: 0.3em;
 }

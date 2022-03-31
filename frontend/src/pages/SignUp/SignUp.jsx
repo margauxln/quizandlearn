@@ -4,12 +4,12 @@ import * as Yup from 'yup';
 import { faInfoCircle, faEye } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import LogoBlue from '../../assets/logoBlue.png';
 import { useSignUp } from "../../hooks/useSignUp";
 
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const LOGIN_URL_FRONTEND = '/login';
+const LOGIN_URL_FRONTEND = '/';
 
 const SignUp = () => {
     //entre {} car ça retournait un objet
@@ -66,13 +66,13 @@ const SignUp = () => {
 
     return(
         <>
-             <section className="signUpContainer">
+             <section id="signUpContainer">
 
-                    <img src={LogoBlue} className="logo"alt=""></img>  
-                    <h1>S'inscrire</h1>
+                    <img src={LogoBlue} id="logoSignUp" alt=""></img>  
+                    <h1 id="signUpTitre">S'inscrire</h1>
                     <br/>
 
-                    <form onSubmit={formik.handleSubmit}>
+                    <form onSubmit={formik.handleSubmit} className="formSignUp">
 
                         <div className="field">
                             <label htmlFor="name" className="sr-only">Prénom*</label>
@@ -84,16 +84,15 @@ const SignUp = () => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     value = {formik.values.name}
-                                    aria-describedby="nameError"
                                     className="input"
                                     placeholder = "Prénom"  
                                 />
 
                             {formik.touched.name && formik.errors.name ?
 
-                                <span className="errorMessage">
-                                    <FontAwesomeIcon icon={faInfoCircle} className="errorIcon" /> 
-                                    <p id="nameError">{formik.errors.name}</p> 
+                                <span className="errorMessageSignUp">
+                                    <FontAwesomeIcon icon={faInfoCircle} className="errorIconSignUp" /> 
+                                    <p className="errorContentSignUp">{formik.errors.name}</p> 
                                 </span> : null}
                         </div>
 
@@ -108,15 +107,14 @@ const SignUp = () => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     value = {formik.values.surname}
-                                    aria-describedby="surNameError"
                                     placeholder="Nom"
                                 />
 
                                 {formik.touched.surname && formik.errors.surname ? 
 
-                                    <span className="errorMessage">
-                                        <FontAwesomeIcon icon={faInfoCircle} className="errorIcon" /> 
-                                        <p id="surNameError">{formik.errors.surname}</p>
+                                    <span className="errorMessageSignUp">
+                                        <FontAwesomeIcon icon={faInfoCircle} className="errorIconSignUp" /> 
+                                        <p className="errorContentSignUp">{formik.errors.surname}</p>
                                     </span> : null}
                         </div>
 
@@ -131,19 +129,18 @@ const SignUp = () => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     value = {formik.values.email}
-                                    aria-describedby="emailError"
                                     placeholder="E-mail"
                                 />
 
                                 {formik.touched.email && formik.errors.email ? 
 
-                                    <span className="errorMessage">
-                                        <FontAwesomeIcon icon={faInfoCircle} className="errorIcon" /> 
-                                        <p id="emailError">{formik.errors.email}</p>
+                                    <span className="errorMessageSignUp">
+                                        <FontAwesomeIcon icon={faInfoCircle} className="errorIconSignUp" /> 
+                                        <p className="errorContentSignUp">{formik.errors.email}</p>
                                     </span> : null}
                         </div>
 
-                        <div className={`${"field"} ${"passwordContainer"}`}>
+                        <div className="field passwordContainer">
                             <label htmlFor="password"></label>
                                 <input 
                                     id="password"
@@ -154,23 +151,22 @@ const SignUp = () => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     value = {formik.values.password}
-                                    aria-describedby="passwordError"
                                     placeholder="Mot de passe"
                                 />
 
-                                <button onClick={togglePasswordVisiblity} className="passwordEye">
-                                    <FontAwesomeIcon icon={faEye} className="eye"/>
+                                <button onClick={togglePasswordVisiblity} className="passwordEyeSignUp">
+                                    <FontAwesomeIcon icon={faEye} className="eyeSignUp"/>
                                 </button>
                                 
                                 {formik.touched.password && formik.errors.password ? 
 
-                                    <span className="errorMessage">
-                                        <FontAwesomeIcon icon={faInfoCircle} className="errorIcon" /> 
-                                        <p id="passwordError">{formik.errors.password}</p>
+                                    <span className="errorMessageSignUp">
+                                        <FontAwesomeIcon icon={faInfoCircle} className="errorIconSignUp" /> 
+                                        <p className="errorContentSignUp">{formik.errors.password}</p>
                                     </span> : null}
                         </div>
 
-                        <div className={`${"field"} ${"confirmPasswordContainer"}`}>
+                        <div className="field passwordContainer">
                             <label htmlFor="password-confirmation" className="sr-only">Confirmation du mot de passe</label>
                                 <input 
                                     id="password-confirmation"
@@ -181,39 +177,38 @@ const SignUp = () => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     value = {formik.values.confirmPassword}
-                                    aria-describedby="confirmPasswordError"
                                     placeholder="Confirmation mot de passe"
                                 />
                                 
-                                <button onClick={toggleConfirmedPasswordVisiblity} className="confirmPasswordEye">
-                                    <FontAwesomeIcon icon={faEye} className="eye"/>
+                                <button onClick={toggleConfirmedPasswordVisiblity} className="passwordEyeSignUp">
+                                    <FontAwesomeIcon icon={faEye} className="eyeSignUp"/>
                                 </button>
 
                                 {formik.touched.confirmPassword && formik.errors.confirmPassword ? 
 
-                                    <span className="errorMessage">
-                                        <FontAwesomeIcon icon={faInfoCircle} className="errorIcon" />  
-                                        <p id="confirmPasswordError">{formik.errors.confirmPassword}</p>
+                                    <span className="errorMessageSignUp">
+                                        <FontAwesomeIcon icon={faInfoCircle} className="errorIconSignUp" />  
+                                        <p className="errorContentSignUp">{formik.errors.confirmPassword}</p>
                                     </span> : null}
                                 
                             {errMsg && 
-                                <span className="errorMessage">
-                                    <FontAwesomeIcon icon={faInfoCircle} className="errorIcon" />  
-                                    <p id="accountError">{errMsg}</p>
+                                <span className="errorMessageSignUp">
+                                    <FontAwesomeIcon icon={faInfoCircle} className="errorIconSignUp" />  
+                                    <p className="errorContentSignUp">{errMsg}</p>
                                 </span>}
                         </div>
                         
-                        <div className="buttonContainer">
+                        <div className="buttonContainer signUpSubmit">
                             <input 
-                                className={`${"button"} ${"submitButton"}`} 
+                                className={"button signUpSubmitButton"}
                                 type="submit" 
                                 value="Inscription"
                             />
                         </div>
                         <br/>
                 </form>
-                    <p>Vous avez déjà un compte ?</p> 
-                    <Link to={LOGIN_URL_FRONTEND} className="linkToOtherPage"> Connectez-vous</Link>
+                    <p id="accountQuestion">Vous avez déjà un compte ?</p> 
+                    < Link to={LOGIN_URL_FRONTEND} id="linkToSignInPage"> Connectez-vous</Link>
                 
             </section>
         </>     
@@ -221,3 +216,6 @@ const SignUp = () => {
 }
 
 export default SignUp;
+
+       
+       

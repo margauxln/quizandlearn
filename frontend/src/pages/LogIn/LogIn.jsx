@@ -49,13 +49,13 @@ const LogIn = () => {
         <div className="loginContainer">
 
             <br/>
-            <img src={LogoBlue} className="logo"alt=""></img>  
-            <h1 id="SeConnecter"> Se Connecter</h1>
+            <img src={LogoBlue} id="logoLogIn" alt=""></img>  
+            <h1 id="LogInTitre"> Se Connecter</h1>
 
             <form onSubmit={formik.handleSubmit}>
 
-                <div className="field">
-                    <label htmlFor="email" className="sr-only">E-mail</label>
+                <div className="field logInForm">
+                    <label htmlFor="email"  className="sr-only">E-mail</label>
                         <input 
                             id="email"
                             name="email"
@@ -73,13 +73,13 @@ const LogIn = () => {
                     {/* Si la personne se trouve dans le champs et il y a des erreurs dans l'e-mail, alors on verra les erreurs*/}
                     {formik.touched.email && formik.errors.email ? 
 
-                        <span className="errorMessage">
-                            <FontAwesomeIcon icon={faInfoCircle} className="errorIcon" /> 
-                            <p id="error">{formik.errors.email}</p>
+                        <span className="errorMessageLogIn">
+                            <FontAwesomeIcon icon={faInfoCircle} className="errorIconLogIn" /> 
+                            <p className="errorLogIn">{formik.errors.email}</p>
                         </span> : null}
                 </div>
 
-                <div className="field passwordContainer">
+                <div className="field logInForm passwordContainer">
                     <label htmlFor="password" className="sr-only">Password</label>
                         <input 
                             id="password"
@@ -100,28 +100,30 @@ const LogIn = () => {
 
                     {formik.touched.password && formik.errors.password ? 
 
-                        <span className="errorMessage">
-                            <FontAwesomeIcon icon={faInfoCircle} className="errorIcon" /> 
-                            <p id="error">{formik.errors.password}</p>
+                        <span className="errorMessageLogIn">
+                            <FontAwesomeIcon icon={faInfoCircle} className="errorIconLogIn" /> 
+                            <p className="errorLogIn">{formik.errors.password}</p>
                         </span> : null}
                 </div>
 
-                <div className="buttonContainer">
-                    <input 
-                        className="button submitButton"
-                        type="submit" value="Log In"/>
-                </div>
                 {/*Messages d'erreurs du serveur ou mauvais identifiants: */}
                 {errMsg && 
-                    <span className="errorMessage">
-                        <FontAwesomeIcon icon={faInfoCircle} className="errorIcon" />  
-                        <p id="accountError">{errMsg}</p>
+                    <span className="errorMessageLogIn">
+                        <FontAwesomeIcon icon={faInfoCircle} className="errorIconLogIn" />  
+                        <p id="accountErrorLogIn">{errMsg}</p>
                     </span>}
+                
+                <div className="logInSubmit">
+                    <input 
+                        className="button logInSubmitButton"
+                        type="submit" value="Log In"/>
+                </div>
+
             </form>
 
             <br/>
-            <p>Nouveau sur la plateforme ? </p> 
-            <Link to={SIGNUP_URL_FRONTEND} className="linkToOtherPage">Inscrivez-vous</Link>
+            <p id="newcomerQuestion" >Nouveau sur la plateforme ? </p> 
+            <Link to={SIGNUP_URL_FRONTEND} id="linkToOtherPage">Inscrivez-vous</Link>
         </div>
     );
 
