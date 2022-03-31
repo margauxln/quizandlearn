@@ -3,9 +3,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { faInfoCircle, faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from '../../config/axios';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import LogoBlue from '../../assets/logoBlue.png';
 import { useAuth } from "../../hooks/useAuth";
 

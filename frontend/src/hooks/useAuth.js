@@ -1,7 +1,7 @@
 import axios from '../config/axios';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../config/api';
-import { actions, useStateValue } from '../contexts/AuthProvider';
+import { actions, useStateValue } from '../context/AuthProvider';
 
 const EXPLORE_URL_FRONTEND = '/quizzes';
 

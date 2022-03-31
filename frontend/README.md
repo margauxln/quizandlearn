@@ -75,3 +75,31 @@ npm install
 ## every time :
 npm start
 
+## Dcoumentation projet :
+## React Router Dom
+https://reactrouter.com/docs/en/v6/getting-started/overview
+
+## Formuliare HTML
+https://developer.mozilla.org/fr/docs/Web/HTML/Element/Form
+## Formulaires Formik + Yup
+https://formik.org/docs/api/useFormik
+https://formik.org/docs/tutorial#schema-validation-with-yup
+
+## Login avec Axios (David Gray videos - 7 videos on YouTube )
+https://www.youtube.com/watch?v=brcHK3P6ChQ&list=PL0Zuz27SZ-6PRCpm9clX0WiBEMB70FWwd&index=2
+https://www.youtube.com/watch?v=X3qyxo_UTR4&list=PL0Zuz27SZ-6PRCpm9clX0WiBEMB70FWwd&index=3
+https://www.youtube.com/watch?v=oUZjO00NkhY&list=PL0Zuz27SZ-6PRCpm9clX0WiBEMB70FWwd&index=3
+
+## Local Storage
+https://www.w3schools.com/jsref/prop_win_localstorage.asp
+https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+
+## JWT DECODE Library
+https://www.npmjs.com/package/jwt-decode
+
+## Hook Use Reducer
+https://reactjs.org/docs/hooks-reference.html#usereducer
+https://www.youtube.com/watch?v=26ogBZXeBwc&t=4s
+
+
+

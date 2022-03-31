@@ -1,11 +1,11 @@
 import 'bulma/css/bulma.min.css';
 import React from "react";
-import LogIn from '../pages/log-in/LogIn';
-import SignUp from '../pages/sign-up/SignUp';
+import LogIn from '../pages/LogIn/LogIn';
+import SignUp from '../pages/SignUp/SignUp';
 import { Routes, Route } from "react-router-dom";
-import Explore from '../pages/explore/Explore';
-import { AuthProvider } from '../contexts/AuthProvider';
-import RequireAuth from '../contexts/RequireAuth';
+import Explore from '../pages/Explore/Explore';
+import { AuthProvider } from '../context/AuthProvider';
+import RequireAuth from '../context/RequireAuth';
 
 const App = () => {
 

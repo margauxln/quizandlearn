@@ -4,7 +4,6 @@ import * as Yup from 'yup';
 import { faInfoCircle, faEye } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
-import axios from '../../config/axios';
 import { Link, useNavigate } from 'react-router-dom';
 import LogoBlue from '../../assets/logoBlue.png';
 import { useSignUp } from "../../hooks/useSignUp";
@@ -19,7 +18,6 @@ const SignUp = () => {
     const [passwordShown, setPasswordShown] = useState(false);
     const [confirmedPasswordShown, setConfirmedPasswordShown] = useState(false);
     const [errMsg, setErrMsg] = useState('');
-    const navigate = useNavigate();
 
     const formik = useFormik({
 
