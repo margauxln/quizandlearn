@@ -11,7 +11,7 @@ import { useSignUp } from "../../hooks/useSignUp";
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const LOGIN_URL_FRONTEND = '/';
 
-const SignUp = () => {
+const Signup = () => {
     //entre {} car ça retournait un objet
     const {signup} = useSignUp();
 
@@ -218,7 +218,7 @@ const SignUp = () => {
     );
 }
 
-export default SignUp;
+export default Signup;
 
        
        

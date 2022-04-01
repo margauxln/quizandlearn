@@ -10,7 +10,7 @@ import { useAuth } from "../../hooks/useAuth";
 
 const SIGNUP_URL_FRONTEND = '/signup';
 
-const LogIn = () => {
+const Login = () => {
    
     const {login} = useAuth();
     
@@ -129,4 +129,4 @@ const LogIn = () => {
 
 }
 
-export default LogIn;
+export default Login;
