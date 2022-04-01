@@ -2,6 +2,7 @@ import 'bulma/css/bulma.min.css';
 import React from "react";
 import Login from '../pages/Login/Login';
 import Signup from '../pages/Signup/Signup';
+import QuizCreation from '../pages/QuizCreation/QuizCreation';
 import { Routes, Route } from "react-router-dom";
 import Explore from '../pages/Explore/Explore';
 import { AuthProvider } from '../context/AuthProvider';
@@ -22,6 +23,7 @@ const App = () => {
             {/* we want to protect these routes */}
             <Route element={<RequireAuth />}>
               <Route path="/quizzes" element={<Explore />} />
+              <Route path="/quiz-creation" element={<QuizCreation />} />
             </Route>
 
             {/* route qui n'existe pas - redirection page Explore*/}
