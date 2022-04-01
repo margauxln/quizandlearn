@@ -1,24 +1,15 @@
 import "./QuizCreation.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import axios from '../../config/axios';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import Header from "../../components/header/Header";
-
-const QUIZCREATION_URL_FRONTEND = '/quizzes/quizCreation';
-const QUIZCREATION_URL_BACKEND = '/quizzes/quizCreation';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const QuizCreation = () => {
-    const navigate = useNavigate();
-    const [errMsg, setErrMsg] = useState('');
+
     const formik = useFormik({
         initialValues: {
             title: "",
-            descritpion:"",
+            description:"",
             categories: ""
         },
         validationSchema: Yup.object({
@@ -29,88 +20,79 @@ const QuizCreation = () => {
             categories: Yup.string()
                 .required("Champ obligatoire")
         }),
-        onSubmit: async (values) => {
-            try {
-                const response = await axios.post(QUIZCREATION_URL_BACKEND,
-                    JSON.stringify({
-                        title : values.title,
-                        description: values.description,
-                        categories: values.categories
-                    }),
-                    {
-                        headers: { 'Content-Type': 'application/json' },
-                        withCredentials: true
-                    });
-
-                ///ajouter partie token si besoin
-
-                //Ici on reinitialise les valeurs à zéro et, si on est bien authentifiées, on va à la page appelée dans
-                //la fonction navigate
-                values.title = "";
-                values.description = "";
-                values.categories = "";
-                navigate(QUIZCREATION_URL_FRONTEND);
-
-            } catch (error) {
-
-            }
-        }
     });
 
     return (
-        <div className="quizCreationContainer">
-            <h1>Creation Quiz!</h1>
-            <form >
-                <section>
-                    <div className="field">
-                        <label htmlFor="title"  className="sr-only">Titre questionnaire</label>
-                        <input
-                            id="title"
-                            name="title"
+            <div id="quizCreationPageContainer">
+
+                <form id="quizCreationFormContainer">
+
+                <h1 id="titleQuizCreation">Création de Quiz</h1>
+
+                        {/*Title*/}
+                        <div className="field">
+                            {/*?? sr-only ne marche pas ici*/}
+                            <label HTMLlFor="title" className="sr-only"></label>
+                            <input
+                                id="title"
+                                name="title"
+                                type="text"
+                                className="input"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value = {formik.values.title}
+                                maxLength="24"
+                                aria-describedby="error"
+                                placeholder = "Titre questionnaire"
+                            />
+
+                        {formik.touched.title && formik.errors.title ?
+                            <span className="errorMessageQuizCreationContainer">
+                                <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
+                                <p className="errorContentQuizCreation">{formik.errors.title}</p>
+                            </span> : null}
+
+                        </div>
+
+                        {/*Description*/}
+                        <textarea
+                            name="description"
+                            className="textarea"
+                            placeholder="Description"
+                            rows="6"
                             type="text"
-                            className="input"
                             onChange={formik.handleChange}
-                            //handleBlur permet de montrer à l'utilisateur les erreurs quand il se trouve dans le champs
-                            //sans attendre qu'il ait submit le formulaire
                             onBlur={formik.handleBlur}
-                            value = {formik.values.title}
-                            maxLength="24"
+                            value = {formik.values.description}
                             aria-describedby="error"
-                            placeholder = "Titre questionnaire"
-                        />
-                      {/*  /*    <span className="errorMessage">
-                            <FontAwesomeIcon icon={faInfoCircle} className="errorIcon" />
-                            <p id="error">{formik.errors.email}</p>
-                        </span> : null}*/}
-                    </div>
+                            >
+                        </textarea>
 
-                    <textarea
-                        name="descritpion"
-                        className="textarea"
-                        placeholder="Description"
-                        type="text"
-                        onChange={formik.handleChange}
-                        //handleBlur permet de montrer à l'utilisateur les erreurs quand il se trouve dans le champs
-                        //sans attendre qu'il ait submit le formulaire
-                        onBlur={formik.handleBlur}
-                        value = {formik.values.descritpion}
-                       //maxLength="24"
-                        aria-describedby="error"
-                        >
-                    </textarea>
+                        {formik.touched.description && formik.errors.description ?
+                            <span className="errorMessageQuizCreationContainer">
+                                <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
+                                <p className="errorContentQuizCreation">{formik.errors.description}</p>
+                            </span> : null}
 
-                    <div className="select is-primary">
-                        <select name="categories" id="category-select">
-                            <option value="">--Please choose an option--</option>
-                            <option value="tech">Tech</option>
-                            <option value="feminisme">Feminisme</option>
-                            <option value="ecologie">Ecologie</option>
-                        </select>
-                    </div>
+                        {/*Select*/}
+                        <div className="select is-warning" id="selectCategoriesContainer">
+                            <select id="selectCategories" name="categories">
+                                <option value="">Thématique</option>
+                                <option value="tech">Tech</option>
+                                <option value="feminisme">Feminisme</option>
+                                <option value="ecologie">Ecologie</option>
+                            </select>
+                        </div>
+                        
+                        {/*?? à vérifier si les messages d'erreur marchent*/}
+                        {formik.touched.categories && formik.errors.categories ?
+                            <span className="errorMessageQuizCreationContainer">
+                                <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
+                                <p className="errorContentQuizCreation">{formik.errors.categories}</p>
+                            </span> : null}
 
-                </section>
-            </form>
-        </div>
+                </form>
+            </div>
     );
 }
 

@@ -1,5 +1,6 @@
 export const api = {
     login: 'login',
     signup: 'signup',
-    logout: 'logout'
+    logout: 'logout',
+    quizCreation: 'quizCreation'
 }
