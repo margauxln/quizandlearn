@@ -3,8 +3,16 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
 
 const QuizCreation = () => {
+    const[newAnswer, setNewAnswer] = useState(false);
+
+    const addNewAnswer = (e) => {
+        console.log(newAnswer);
+        setNewAnswer(true);
+        console.log(newAnswer);
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -12,7 +20,9 @@ const QuizCreation = () => {
             description:"",
             categories: "",
             questionTitle: "",
-            reply: ""
+            reply1: "",
+            reply2: "",
+            reply3: ""
         },
         validationSchema: Yup.object({
            title: Yup.string()
@@ -23,7 +33,11 @@ const QuizCreation = () => {
                 .required("Champ obligatoire"),
             questionTitle: Yup.string()
                 .required("Champ obligatoire"),
-            reply: Yup.string()
+            reply1: Yup.string()
+                .required("Champ obligatoire"),
+            reply2: Yup.string()
+                .required("Champ obligatoire"),
+            reply3: Yup.string()
                 .required("Champ obligatoire")
         }),
     });
@@ -127,23 +141,23 @@ const QuizCreation = () => {
                         <div className="repliesContainer">
                             {/*Reply 1*/}
                             <div className="field" id="replyField">
-                                <label HTMLlFor="reply" className="sr-only"></label>
+                                <label HTMLlFor="reply1" className="sr-only"></label>
                                 <input
-                                    id="reply"
-                                    name="reply"
+                                    id="reply1"
+                                    name="reply1"
                                     type="text"
                                     className="input"
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                    value = {formik.values.reply}
+                                    value = {formik.values.reply1}
                                     maxLength="24"
                                     placeholder = "Réponse possible 1"
                                 />
 
-                            {formik.touched.reply && formik.errors.reply ?
+                            {formik.touched.reply1 && formik.errors.reply1 ?
                                 <span className="errorMessageQuizCreationContainer">
                                     <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
-                                    <p className="errorContentQuizCreation">{formik.errors.reply}</p>
+                                    <p className="errorContentQuizCreation">{formik.errors.reply1}</p>
                                 </span> : null}
                             
                                 <label class="checkbox">
@@ -154,23 +168,23 @@ const QuizCreation = () => {
 
                             {/*Reply 2*/}
                             <div className="field" id="replyField">
-                                <label HTMLlFor="reply" className="sr-only"></label>
+                                <label HTMLlFor="reply2" className="sr-only"></label>
                                 <input
-                                    id="reply"
-                                    name="reply"
+                                    id="reply2"
+                                    name="reply2"
                                     type="text"
                                     className="input"
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                    value = {formik.values.reply}
+                                    value = {formik.values.reply2}
                                     maxLength="24"
                                     placeholder = "Réponse possible 2"
                                 />
 
-                            {formik.touched.reply && formik.errors.reply ?
+                            {formik.touched.reply2 && formik.errors.reply2 ?
                                 <span className="errorMessageQuizCreationContainer">
                                     <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
-                                    <p className="errorContentQuizCreation">{formik.errors.reply}</p>
+                                    <p className="errorContentQuizCreation">{formik.errors.reply2}</p>
                                 </span> : null}
                             
                                 <label class="checkbox">
@@ -184,8 +198,49 @@ const QuizCreation = () => {
                                     className="button addQuestion"
                                     type="button" 
                                     value="Ajouter une réponse"
+                                    onClick={addNewAnswer}
                                 />
                             </div>
+
+                            {/*On veut rajouter une réponse*/}
+                            {(newAnswer === true) &&
+                                <div>
+                                    <div className="field" id="replyField">
+                                    <label HTMLlFor="reply3" className="sr-only"></label>
+                                    <input
+                                        id="reply33"
+                                        name="reply"
+                                        type="text"
+                                        className="input"
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        value = {formik.values.reply3}
+                                        maxLength="24"
+                                        placeholder = "Réponse possible 3"
+                                    />
+
+                                    {formik.touched.reply3 && formik.errors.reply3 ?
+                                        <span className="errorMessageQuizCreationContainer">
+                                            <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
+                                            <p className="errorContentQuizCreation">{formik.errors.reply3}</p>
+                                        </span> : null}
+                                    
+                                        <label className="checkbox">
+                                            <input type="checkbox"/>
+                                            bonne réponse
+                                        </label>
+                                    </div>
+
+                                    <div className="buttonContainer addQuestionContainer">
+                                        <input 
+                                            className="button addQuestion"
+                                            type="button" 
+                                            value="Ajouter une réponse"
+                                            onClick={addNewAnswer}
+                                        />
+                                    </div>
+                                </div>
+                            }
                         </div>
 
                     </div>

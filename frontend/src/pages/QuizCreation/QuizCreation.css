@@ -41,7 +41,7 @@
 #quizCreationFormContainer input[type="text"],
 #quizCreationFormContainer textarea,
 #selectCategories {
-    background-color : #0E835B;
+    background-color : #256AD0;
     color: white;
     width: 100%;
     font-family: "Sporting", "sans-serif";
@@ -90,15 +90,15 @@
 .addQuestionContainer{
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 20px;
 }
 
 .addQuestion{
-    background-color: #FEC0C0;
-    font-family: "Sporting", "sans-serif";
+    background-color: #2B6FD2;
+    color: white;
     font-weight: bold;
-    cursor: pointer;
-    justify-content: flex-end;
-    font-size: 14px;
+    font-family: "Sporting", "sans-serif";
+    cursor: point
 }
 
 /*Error messages*/
