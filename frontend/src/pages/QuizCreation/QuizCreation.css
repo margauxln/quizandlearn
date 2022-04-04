@@ -74,13 +74,31 @@
 }
 
 #replyField {
-    width: 700px;
+    width: 100%;
     padding-left: 0px;
 }
 
 #quizCreationFormContainer input[type="checkBox"]{
     margin-right: 10px;
     margin-top: 10px;
+}
+
+.repliesContainer{
+    max-width: 700px;
+}
+
+.addQuestionContainer{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.addQuestion{
+    background-color: #FEC0C0;
+    font-family: "Sporting", "sans-serif";
+    font-weight: bold;
+    cursor: pointer;
+    justify-content: flex-end;
+    font-size: 14px;
 }
 
 /*Error messages*/

@@ -124,58 +124,68 @@ const QuizCreation = () => {
                             </span> : null}
                         </div>
 
-                        {/*Reply 1*/}
-                        <div className="field" id="replyField">
-                            <label HTMLlFor="reply" className="sr-only"></label>
-                            <input
-                                id="reply"
-                                name="reply"
-                                type="text"
-                                className="input"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value = {formik.values.reply}
-                                maxLength="24"
-                                placeholder = "Réponse possible 1"
-                            />
+                        <div className="repliesContainer">
+                            {/*Reply 1*/}
+                            <div className="field" id="replyField">
+                                <label HTMLlFor="reply" className="sr-only"></label>
+                                <input
+                                    id="reply"
+                                    name="reply"
+                                    type="text"
+                                    className="input"
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    value = {formik.values.reply}
+                                    maxLength="24"
+                                    placeholder = "Réponse possible 1"
+                                />
 
-                        {formik.touched.reply && formik.errors.reply ?
-                            <span className="errorMessageQuizCreationContainer">
-                                <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
-                                <p className="errorContentQuizCreation">{formik.errors.reply}</p>
-                            </span> : null}
-                        
-                            <label class="checkbox">
-                                <input type="checkbox"/>
-                                bonne réponse
-                            </label>
-                        </div>
+                            {formik.touched.reply && formik.errors.reply ?
+                                <span className="errorMessageQuizCreationContainer">
+                                    <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
+                                    <p className="errorContentQuizCreation">{formik.errors.reply}</p>
+                                </span> : null}
+                            
+                                <label class="checkbox">
+                                    <input type="checkbox"/>
+                                    bonne réponse
+                                </label>
+                            </div>
 
-                        {/*Reply 2*/}
-                        <div className="field" id="replyField">
-                            <label HTMLlFor="reply" className="sr-only"></label>
-                            <input
-                                id="reply"
-                                name="reply"
-                                type="text"
-                                className="input"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value = {formik.values.reply}
-                                maxLength="24"
-                                placeholder = "Réponse possible 2"
-                            />
+                            {/*Reply 2*/}
+                            <div className="field" id="replyField">
+                                <label HTMLlFor="reply" className="sr-only"></label>
+                                <input
+                                    id="reply"
+                                    name="reply"
+                                    type="text"
+                                    className="input"
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    value = {formik.values.reply}
+                                    maxLength="24"
+                                    placeholder = "Réponse possible 2"
+                                />
 
-                        {formik.touched.reply && formik.errors.reply ?
-                            <span className="errorMessageQuizCreationContainer">
-                                <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
-                                <p className="errorContentQuizCreation">{formik.errors.reply}</p>
-                            </span> : null}
-                        
-                            <label class="checkbox">
-                                <input type="checkbox"/>
-                                bonne réponse
-                            </label>
+                            {formik.touched.reply && formik.errors.reply ?
+                                <span className="errorMessageQuizCreationContainer">
+                                    <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
+                                    <p className="errorContentQuizCreation">{formik.errors.reply}</p>
+                                </span> : null}
+                            
+                                <label class="checkbox">
+                                    <input type="checkbox"/>
+                                    bonne réponse
+                                </label>
+                            </div>
+
+                            <div className="buttonContainer addQuestionContainer">
+                                <input 
+                                    className="button addQuestion"
+                                    type="button" 
+                                    value="Ajouter une réponse"
+                                />
+                            </div>
                         </div>
 
                     </div>
