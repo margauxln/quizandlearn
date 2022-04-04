@@ -9,9 +9,7 @@ const QuizCreation = () => {
     const[newAnswer, setNewAnswer] = useState(false);
 
     const addNewAnswer = (e) => {
-        console.log(newAnswer);
         setNewAnswer(true);
-        console.log(newAnswer);
     }
 
     const formik = useFormik({
@@ -193,14 +191,14 @@ const QuizCreation = () => {
                                 </label>
                             </div>
 
-                            <div className="buttonContainer addQuestionContainer">
+                            {(newAnswer === false) && <div className="buttonContainer addQuestionContainer">
                                 <input 
                                     className="button addQuestion"
                                     type="button" 
                                     value="Ajouter une réponse"
                                     onClick={addNewAnswer}
                                 />
-                            </div>
+                            </div>}
 
                             {/*On veut rajouter une réponse*/}
                             {(newAnswer === true) &&
