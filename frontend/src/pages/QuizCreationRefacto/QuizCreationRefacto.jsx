@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, FieldArray } from 'formik';
 
-const questionLimit = 5;
+const questionLimit = 4;
 
 export const FriendList = () => (
   <div>
@@ -12,7 +12,7 @@ export const FriendList = () => (
           quizDescription:"",
           quizCategory: "",
           questionTitle: "",
-          otherAnswers: ["firstAnswer", "secondAnwer"], //max 3
+          otherAnswers: ["firstAnswer", "secondAnwer"], //max 2 en plus
           otherQuestions: [] }} //max 9
 
       render={({ values }) => (
