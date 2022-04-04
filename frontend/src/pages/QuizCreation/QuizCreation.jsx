@@ -10,7 +10,9 @@ const QuizCreation = () => {
         initialValues: {
             title: "",
             description:"",
-            categories: ""
+            categories: "",
+            questionTitle: "",
+            reply: ""
         },
         validationSchema: Yup.object({
            title: Yup.string()
@@ -18,6 +20,10 @@ const QuizCreation = () => {
             description: Yup.string()
                 .required("Champ obligatoire"),
             categories: Yup.string()
+                .required("Champ obligatoire"),
+            questionTitle: Yup.string()
+                .required("Champ obligatoire"),
+            reply: Yup.string()
                 .required("Champ obligatoire")
         }),
     });
@@ -29,9 +35,9 @@ const QuizCreation = () => {
 
                 <h1 id="titleQuizCreation">Création de Quiz</h1>
 
+                    <div className="sectionContainer">
                         {/*Title*/}
                         <div className="field">
-                            {/*?? sr-only ne marche pas ici*/}
                             <label HTMLlFor="title" className="sr-only"></label>
                             <input
                                 id="title"
@@ -42,7 +48,6 @@ const QuizCreation = () => {
                                 onBlur={formik.handleBlur}
                                 value = {formik.values.title}
                                 maxLength="24"
-                                aria-describedby="error"
                                 placeholder = "Titre questionnaire"
                             />
 
@@ -51,7 +56,6 @@ const QuizCreation = () => {
                                 <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
                                 <p className="errorContentQuizCreation">{formik.errors.title}</p>
                             </span> : null}
-
                         </div>
 
                         {/*Description*/}
@@ -59,12 +63,11 @@ const QuizCreation = () => {
                             name="description"
                             className="textarea"
                             placeholder="Description"
-                            rows="6"
+                            rows="4"
                             type="text"
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                             value = {formik.values.description}
-                            aria-describedby="error"
                             >
                         </textarea>
 
@@ -76,8 +79,12 @@ const QuizCreation = () => {
 
                         {/*Select*/}
                         <div className="select is-warning" id="selectCategoriesContainer">
-                            <select id="selectCategories" name="categories">
-                                <option value="">Thématique</option>
+                            <select 
+                                id="selectCategories" 
+                                name="categories" 
+                                value= {formik.values.categories}
+                            >
+                                <option value="" disabled>Thématique</option>
                                 <option value="tech">Tech</option>
                                 <option value="feminisme">Feminisme</option>
                                 <option value="ecologie">Ecologie</option>
@@ -90,6 +97,89 @@ const QuizCreation = () => {
                                 <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
                                 <p className="errorContentQuizCreation">{formik.errors.categories}</p>
                             </span> : null}
+                    </div>
+
+                    <div className="sectionContainer">
+                        <p className="questionNumber" >Question 1</p>
+
+                        {/*Question Title*/}
+                        <div className="field">
+                            <label HTMLlFor="questionTitle" className="sr-only"></label>
+                            <input
+                                id="questionTitle"
+                                name="questionTitle"
+                                type="text"
+                                className="input"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value = {formik.values.questionTitle}
+                                maxLength="24"
+                                placeholder = "Titre Question"
+                            />
+
+                        {formik.touched.questionTitle && formik.errors.questionTitle ?
+                            <span className="errorMessageQuizCreationContainer">
+                                <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
+                                <p className="errorContentQuizCreation">{formik.errors.questionTitle}</p>
+                            </span> : null}
+                        </div>
+
+                        {/*Reply 1*/}
+                        <div className="field" id="replyField">
+                            <label HTMLlFor="reply" className="sr-only"></label>
+                            <input
+                                id="reply"
+                                name="reply"
+                                type="text"
+                                className="input"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value = {formik.values.reply}
+                                maxLength="24"
+                                placeholder = "Réponse possible 1"
+                            />
+
+                        {formik.touched.reply && formik.errors.reply ?
+                            <span className="errorMessageQuizCreationContainer">
+                                <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
+                                <p className="errorContentQuizCreation">{formik.errors.reply}</p>
+                            </span> : null}
+                        
+                            <label class="checkbox">
+                                <input type="checkbox"/>
+                                bonne réponse
+                            </label>
+                        </div>
+
+                        {/*Reply 2*/}
+                        <div className="field" id="replyField">
+                            <label HTMLlFor="reply" className="sr-only"></label>
+                            <input
+                                id="reply"
+                                name="reply"
+                                type="text"
+                                className="input"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value = {formik.values.reply}
+                                maxLength="24"
+                                placeholder = "Réponse possible 2"
+                            />
+
+                        {formik.touched.reply && formik.errors.reply ?
+                            <span className="errorMessageQuizCreationContainer">
+                                <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
+                                <p className="errorContentQuizCreation">{formik.errors.reply}</p>
+                            </span> : null}
+                        
+                            <label class="checkbox">
+                                <input type="checkbox"/>
+                                bonne réponse
+                            </label>
+                        </div>
+
+                    </div>
+                        
 
                 </form>
             </div>

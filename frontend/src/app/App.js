@@ -23,7 +23,7 @@ const App = () => {
             {/* we want to protect these routes */}
             <Route element={<RequireAuth />}>
               <Route path="/quizzes" element={<Explore />} />
-              <Route path="/quiz-creation" element={<QuizCreation />} />
+              <Route path="/create-quiz" element={<QuizCreation />} />
             </Route>
 
             {/* route qui n'existe pas - redirection page Explore*/}
