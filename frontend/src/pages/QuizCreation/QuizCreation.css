@@ -103,6 +103,10 @@
     cursor: point
 }
 
+.answerAndDelete{
+    display: flex;
+}
+
 /*Error messages*/
 .errorMessageQuizCreationContainer{
     display: flex;

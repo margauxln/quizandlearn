@@ -197,35 +197,31 @@ const QuizCreation = () => {
 
                                     {(formik.values.additionalReplies.length > 0 && formik.values.additionalReplies.length) &&
                                     formik.values.additionalReplies.map((reply, index)=>(
-
-                                        <div className="field" id="replyField">
-                                            <label HTMLlFor={`additionalReplies.${index}.reply`} className="sr-only"></label>
-                                            <input
-                                                id={`additionalReplies.${index}.reply`}
-                                                name={`additionalReplies.${index}.reply`}
-                                                type="text"
-                                                className="input"
-                                                onChange={formik.handleChange}
-                                                onBlur={formik.handleBlur}
-                                                value = {formik.values.reply2}
-                                                maxLength="24"
-                                                placeholder = "autre réponse possible"
+                                        <div className="answerAndDelete">
+                                            <div className="field" id="replyField">
+                                                <label HTMLlFor={`additionalReplies.${index}.reply`} className="sr-only"></label>
+                                                <input
+                                                    id={`additionalReplies.${index}.reply`}
+                                                    name={`additionalReplies.${index}.reply`}
+                                                    type="text"
+                                                    className="input"
+                                                    onChange={formik.handleChange}
+                                                    onBlur={formik.handleBlur}
+                                                    value = {formik.values.reply2}
+                                                    maxLength="24"
+                                                    placeholder = "autre réponse possible"
+                                                />
+                                            </div>
+                                            <input 
+                                                className="button addQuestion"
+                                                type="button" 
+                                                value="X"
+                                                onClick={() => remove({ reply:'' })}
                                             />
                                         </div>
-                                
                                     ))}
 
-                                   
-
                                         <div className="buttonContainer addQuestionContainer">
-                                    
-                                            {(formik.values.additionalReplies.length > 0) &&
-                                                <input 
-                                                    className="button addQuestion"
-                                                    type="button" 
-                                                    value="Supprimer une réponse"
-                                                    onClick={() => remove({ reply:'' })}
-                                                />}
 
                                             {(formik.values.additionalReplies.length < additionalRepliesLimit) &&
                                                 <input 
