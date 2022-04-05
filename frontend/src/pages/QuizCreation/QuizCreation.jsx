@@ -1,16 +1,10 @@
 import "./QuizCreation.css";
-import { useFormik } from "formik";
+import { useFormik, FormikProvider, FieldArray } from "formik";
 import * as Yup from "yup";
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState } from 'react';
 
 const QuizCreation = () => {
-    const[newAnswer, setNewAnswer] = useState(false);
-
-    const addNewAnswer = (e) => {
-        setNewAnswer(true);
-    }
 
     const formik = useFormik({
         initialValues: {
@@ -20,7 +14,11 @@ const QuizCreation = () => {
             questionTitle: "",
             reply1: "",
             reply2: "",
-            reply3: ""
+            additionalReplies: [
+                {
+                    reply: ""
+                }
+            ]
         },
         validationSchema: Yup.object({
            title: Yup.string()
@@ -41,7 +39,7 @@ const QuizCreation = () => {
     });
 
     return (
-            <div id="quizCreationPageContainer">
+            <FormikProvider value={formik} id="quizCreationPageContainer">
 
                 <form id="quizCreationFormContainer">
 
@@ -191,61 +189,52 @@ const QuizCreation = () => {
                                 </label>
                             </div>
 
-                            {(newAnswer === false) && <div className="buttonContainer addQuestionContainer">
-                                <input 
-                                    className="button addQuestion"
-                                    type="button" 
-                                    value="Ajouter une réponse"
-                                    onClick={addNewAnswer}
-                                />
-                            </div>}
-
-                            {/*On veut rajouter une réponse*/}
-                            {(newAnswer === true) &&
-                                <div>
-                                    <div className="field" id="replyField">
-                                    <label HTMLlFor="reply3" className="sr-only"></label>
-                                    <input
-                                        id="reply33"
-                                        name="reply"
-                                        type="text"
-                                        className="input"
-                                        onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
-                                        value = {formik.values.reply3}
-                                        maxLength="24"
-                                        placeholder = "Réponse possible 3"
-                                    />
-
-                                    {formik.touched.reply3 && formik.errors.reply3 ?
-                                        <span className="errorMessageQuizCreationContainer">
-                                            <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
-                                            <p className="errorContentQuizCreation">{formik.errors.reply3}</p>
-                                        </span> : null}
-                                    
-                                        <label className="checkbox">
-                                            <input type="checkbox"/>
-                                            bonne réponse
-                                        </label>
-                                    </div>
-
-                                    <div className="buttonContainer addQuestionContainer">
-                                        <input 
-                                            className="button addQuestion"
-                                            type="button" 
-                                            value="Ajouter une réponse"
-                                            onClick={addNewAnswer}
-                                        />
-                                    </div>
-                                </div>
-                            }
+                           
                         </div>
 
+                        <FieldArray name="additionalReplies">
+                            {({ insert, remove, push}) => (
+
+                                <div className="repliesContainer">
+
+                                    {formik.values.additionalReplies.length > 0 &&
+                                    formik.values.additionalReplies.map((reply, index)=>(
+
+                                        <div className="field" id="replyField">
+                                            <label HTMLlFor={`additionalReplies.${index}.reply`} className="sr-only"></label>
+                                            <input
+                                                id={`additionalReplies.${index}.reply`}
+                                                name={`additionalReplies.${index}.reply`}
+                                                type="text"
+                                                className="input"
+                                                onChange={formik.handleChange}
+                                                onBlur={formik.handleBlur}
+                                                value = {formik.values.reply2}
+                                                maxLength="24"
+                                                placeholder = "autre réponse possible"
+                                            />
+                                        </div>
+                                
+                                    ))}
+                                        <div className="buttonContainer addQuestionContainer">
+                                            <input 
+                                                className="button addQuestion"
+                                                type="button" 
+                                                value="Ajouter une réponse"
+                                                onClick={() => insert({ reply:'' })}
+                                            />
+                                        </div>
+
+                                </div>
+
+                            )}
+
+                        </FieldArray>
                     </div>
-                        
+                    
 
                 </form>
-            </div>
+            </FormikProvider>
     );
 }
 
