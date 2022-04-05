@@ -30,8 +30,6 @@ const QuizCreation = () => {
             reply1: Yup.string()
                 .required("Champ obligatoire"),
             reply2: Yup.string()
-                .required("Champ obligatoire"),
-            reply3: Yup.string()
                 .required("Champ obligatoire")
         }),
     });
@@ -140,7 +138,7 @@ const QuizCreation = () => {
                                     id="reply1"
                                     name="reply1"
                                     type="text"
-                                    className="input"
+                                    className="input reply"
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     value = {formik.values.reply1}
@@ -167,7 +165,7 @@ const QuizCreation = () => {
                                     id="reply2"
                                     name="reply2"
                                     type="text"
-                                    className="input"
+                                    className="input reply"
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     value = {formik.values.reply2}
@@ -186,14 +184,13 @@ const QuizCreation = () => {
                                     bonne réponse
                                 </label>
                             </div>
-
                            
                         </div>
 
                         <FieldArray name="additionalReplies">
                             {({ insert, remove }) => (
 
-                                <div className="repliesContainer">
+                                <div className="optionalRepliesContainer">
 
                                     {(formik.values.additionalReplies.length > 0 && formik.values.additionalReplies.length) &&
                                     formik.values.additionalReplies.map((reply, index)=>(
@@ -204,16 +201,21 @@ const QuizCreation = () => {
                                                     id={`additionalReplies.${index}.reply`}
                                                     name={`additionalReplies.${index}.reply`}
                                                     type="text"
-                                                    className="input"
+                                                    className="input reply"
                                                     onChange={formik.handleChange}
-                                                    onBlur={formik.handleBlur}
+                                                    onBlur= {formik.handleBlur}
+                                                    /*Valeur à changer*/
                                                     value = {formik.values.reply2}
                                                     maxLength="24"
                                                     placeholder = "autre réponse possible"
-                                                />
+                                                />               
+                                                <label class="checkbox">
+                                                    <input type="checkbox"/>
+                                                    bonne réponse
+                                                </label>
                                             </div>
                                             <input 
-                                                className="button addQuestion"
+                                                className="button removeQuestion"
                                                 type="button" 
                                                 value="X"
                                                 onClick={() => remove({ reply:'' })}

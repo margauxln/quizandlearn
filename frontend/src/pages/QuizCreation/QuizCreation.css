@@ -74,7 +74,6 @@
 }
 
 
-
 #replyField {
     width: 100%;
     padding-left: 0px;
@@ -103,8 +102,20 @@
     cursor: point
 }
 
+.removeQuestion{
+    background-color: grey;
+    color: white;
+    font-weight: bold;
+    font-family: "Sporting", "sans-serif";
+    cursor: point
+}
+
 .answerAndDelete{
     display: flex;
+}
+
+#replyField > input[type="text"] {
+    background-color: #0E835B;
 }
 
 /*Error messages*/
