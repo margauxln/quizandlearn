@@ -215,17 +215,28 @@ const QuizCreation = () => {
                                 
                                     ))}
 
-                                    {(formik.values.additionalReplies.length < additionalRepliesLimit) &&
+                                   
 
                                         <div className="buttonContainer addQuestionContainer">
-                                            <input 
-                                                className="button addQuestion"
-                                                type="button" 
-                                                value="Ajouter une réponse"
-                                                onClick={() => insert({ reply:'' })}
-                                            />
-                                        </div>}
+                                    
+                                            {(formik.values.additionalReplies.length > 0) &&
+                                                <input 
+                                                    className="button addQuestion"
+                                                    type="button" 
+                                                    value="Supprimer une réponse"
+                                                    onClick={() => remove({ reply:'' })}
+                                                />}
 
+                                            {(formik.values.additionalReplies.length < additionalRepliesLimit) &&
+                                                <input 
+                                                    className="button addQuestion"
+                                                    type="button" 
+                                                    value="Ajouter une réponse"
+                                                    onClick={() => insert({ reply:'' })}
+                                                />}
+
+                                        </div>
+   
                                 </div>
 
                             )}
