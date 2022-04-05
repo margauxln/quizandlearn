@@ -191,7 +191,7 @@ const QuizCreation = () => {
                         </div>
 
                         <FieldArray name="additionalReplies">
-                            {({ insert, remove, push}) => (
+                            {({ insert, remove }) => (
 
                                 <div className="repliesContainer">
 
