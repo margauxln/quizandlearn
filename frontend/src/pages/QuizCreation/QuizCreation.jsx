@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+const additionalRepliesLimit = 2;
+
 const QuizCreation = () => {
 
     const formik = useFormik({
@@ -14,11 +16,7 @@ const QuizCreation = () => {
             questionTitle: "",
             reply1: "",
             reply2: "",
-            additionalReplies: [
-                {
-                    reply: ""
-                }
-            ]
+            additionalReplies: []
         },
         validationSchema: Yup.object({
            title: Yup.string()
@@ -197,7 +195,7 @@ const QuizCreation = () => {
 
                                 <div className="repliesContainer">
 
-                                    {formik.values.additionalReplies.length > 0 &&
+                                    {(formik.values.additionalReplies.length > 0 && formik.values.additionalReplies.length) &&
                                     formik.values.additionalReplies.map((reply, index)=>(
 
                                         <div className="field" id="replyField">
@@ -216,6 +214,9 @@ const QuizCreation = () => {
                                         </div>
                                 
                                     ))}
+
+                                    {(formik.values.additionalReplies.length < additionalRepliesLimit) &&
+
                                         <div className="buttonContainer addQuestionContainer">
                                             <input 
                                                 className="button addQuestion"
@@ -223,7 +224,7 @@ const QuizCreation = () => {
                                                 value="Ajouter une réponse"
                                                 onClick={() => insert({ reply:'' })}
                                             />
-                                        </div>
+                                        </div>}
 
                                 </div>
 

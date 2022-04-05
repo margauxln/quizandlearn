@@ -3,7 +3,6 @@ import React from "react";
 import Login from '../pages/Login/Login';
 import Signup from '../pages/Signup/Signup';
 import QuizCreation from '../pages/QuizCreation/QuizCreation';
-import InviteFriends from '../pages/QuizCreationRefacto/QuizCreationRefacto';
 import { Routes, Route } from "react-router-dom";
 import Explore from '../pages/Explore/Explore';
 import { AuthProvider } from '../context/AuthProvider';
@@ -25,7 +24,6 @@ const App = () => {
             <Route element={<RequireAuth />}>
               <Route path="/quizzes" element={<Explore />} />
               <Route path="/create-quiz" element={<QuizCreation />} />
-              <Route path="/create-quiz-refacto" element={<InviteFriends />} />
             </Route>
 
             {/* route qui n'existe pas - redirection page Explore*/}
