@@ -204,8 +204,6 @@ const QuizCreation = () => {
                                                     className="input reply"
                                                     onChange={formik.handleChange}
                                                     onBlur= {formik.handleBlur}
-                                                    /*Valeur à changer*/
-                                                    value = {formik.values.reply2}
                                                     maxLength="24"
                                                     placeholder = "autre réponse possible"
                                                 />               
