@@ -16,7 +16,15 @@ const QuizCreation = () => {
             questionTitle: "",
             reply1: "",
             reply2: "",
-            additionalReplies: []
+            additionalReplies: [],
+            /*additionalQuestions: [
+                {
+                    questionTitle: "",
+                    reply1: "",
+                    reply2: "",
+                    additionalReplies: []
+                }
+            ]*/
         },
         validationSchema: Yup.object({
            title: Yup.string()
