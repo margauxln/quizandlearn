@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import Explore from '../pages/Explore/Explore';
 import { AuthProvider } from '../context/AuthProvider';
 import RequireAuth from '../context/RequireAuth';
+import MyProfile from '../pages/Profile/myProfile';
 
 const App = () => {
 
@@ -22,6 +23,10 @@ const App = () => {
             {/* we want to protect these routes */}
             <Route element={<RequireAuth />}>
               <Route path="/quizzes" element={<Explore />} />
+            </Route>
+
+            <Route element={<RequireAuth />}>
+              <Route path="/myProfile" element={<MyProfile />} />
             </Route>
 
             {/* route qui n'existe pas - redirection page Explore*/}
