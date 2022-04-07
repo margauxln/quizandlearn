@@ -26,8 +26,7 @@ const QuizCreation = () => {
                         }
                     ],
                 }
-        ]
-            
+            ]
         },
         validationSchema: Yup.object({
            title: Yup.string()
@@ -114,7 +113,7 @@ const QuizCreation = () => {
 
                         {({ push, remove }) => (
                             <>
-                            {/* {JSON.stringify(formik.values.questions)} */}
+                            {/* Pour voir les values : {JSON.stringify(formik.values.questions)} */}
 
                                 {(formik.values.questions.length > 0 && formik.values.questions.length) &&
                                 formik.values.questions.map((question, index)=>(
@@ -140,7 +139,7 @@ const QuizCreation = () => {
 
                                         <FieldArray name={`questions.${index}.answers`}>
 
-                                            {({ push, remove}) => ( 
+                                            {({ push, remove }) => ( 
                                                 <>
                                                 {question  && question.answers && question.answers.map((answer, idx)=>(
                                                     <div className="answerAndDelete" key={idx}>
@@ -164,9 +163,8 @@ const QuizCreation = () => {
                                                     <button 
                                                         className="button removeAnswer"
                                                         type="button" 
-                                                        value="X"
                                                         onClick={() => remove(idx)}
-                                                    />
+                                                    >X</button>
                                                 </div>
                                                 ))}
 
@@ -191,24 +189,25 @@ const QuizCreation = () => {
                                 ))}
                                 
                                 <>
-                                {(formik.values.questions.length  < questionLimit) &&
+                                    {(formik.values.questions.length < questionLimit) &&
 
-                                    <input 
-                                    className="button addQuestion"
-                                    type="button" 
-                                    value="Ajouter une question"
-                                    onClick={() => push({ 
-                                        questionTitle:'', 
-                                        answers:[
-                                            {
-                                                label: ""
-                                            },
-                                            {
-                                                label: ""
-                                            }
-                                        ] 
-                                    })
-                                    }
+                                        <input 
+                                        className="button addQuestion"
+                                        type="button" 
+                                        value="Ajouter une question"
+                                        onClick={() => push({ 
+                                            questionTitle:'', 
+                                            answers:[
+                                                {
+                                                    label: ""
+                                                },
+                                                {
+                                                    label: ""
+                                                }
+                                            ] 
+                                        })
+                                        }
+
                                     />}
                                 </>
 

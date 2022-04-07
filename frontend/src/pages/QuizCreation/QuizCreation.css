@@ -120,7 +120,7 @@
     color: white;
     font-weight: bold;
     font-family: "Sporting", "sans-serif";
-    cursor: point
+    cursor: pointer;
 }
 
 .answerAndDelete{
