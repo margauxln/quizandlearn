@@ -1,7 +1,7 @@
 import "./QuizCreation.css";
-import { useFormik, FormikProvider, FieldArray, Field,} from "formik";
+import { useFormik, FormikProvider, FieldArray } from "formik";
 import * as Yup from "yup";
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const questionLimit = 10;
@@ -24,7 +24,7 @@ const QuizCreation = () => {
                         { 
                             label: "" 
                         }
-                    ],
+                    ]
                 }
             ]
         },
@@ -119,7 +119,15 @@ const QuizCreation = () => {
                                 formik.values.questions.map((question, index)=>(
 
                                     <div className="sectionContainer" key={index}>
-                                        <p className="questionNumber" >Question {index + 1}</p>
+                                        <div className="QuestionAndDeleteContainer">
+                                            <p className="questionNumber" >Question {index + 1}</p>
+                                            <button 
+                                                className="button deleteQuestion"
+                                                type="button" 
+                                                onClick={() => remove(index)
+                                            }> <FontAwesomeIcon icon={faX} className="removeQuestion"/> </button>  
+                                        </div>
+                                             
 
                                         {/*Question Title*/}
                                         <div className="field">
@@ -132,7 +140,7 @@ const QuizCreation = () => {
                                                 onChange={formik.handleChange}
                                                 onBlur={formik.handleBlur}
                                                 maxLength="24"
-                                                placeholder = "Titre Question"
+                                                placeholder = "Titre Question" 
                                             />
 
                                         </div>
@@ -177,14 +185,14 @@ const QuizCreation = () => {
                                                             onClick={() => push(
                                                                 { 
                                                                     answer:'' 
-                                                                })
-                                                            }
+                                                                }
+                                                            )}
                                                         />}
                                                 </div>   
                                                 </>
                                             )}
 
-                                        </FieldArray>        
+                                        </FieldArray> 
                                     </div>
                                 ))}
                                 

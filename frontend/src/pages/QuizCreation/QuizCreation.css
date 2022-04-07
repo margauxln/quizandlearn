@@ -99,6 +99,16 @@
     margin-bottom: 30px;
 }
 
+.QuestionAndDeleteContainer{
+    display: flex;
+    justify-content: end;
+}
+
+.removeQuestion{
+    height: 1.2em;
+    padding-bottom: 0.8em;
+}
+
 /*answers*/
 .addAnswerContainer{
     display: flex;
@@ -112,6 +122,14 @@
     color: white;
     font-weight: bold;
     font-family: "Sporting", "sans-serif";
+    cursor: pointer;
+}
+
+.deleteQuestion{
+    color: red;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
     cursor: pointer;
 }
 
