@@ -48,7 +48,7 @@ const QuizCreation = () => {
                     <div className="sectionContainer">
                         {/*Title*/}
                         <div className="field">
-                            <label htmlFor="title" className="sr-only"></label>
+                            <label htmlFor="title" className="sr-only">Title</label>
                             <input
                                 id="title"
                                 name="title"
@@ -91,7 +91,9 @@ const QuizCreation = () => {
                         <div className="select is-warning" id="selectCategoriesContainer">
                             <select 
                                 id="selectCategories" 
-                                name="categories" 
+                                name="categories"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 value= {formik.values.categories}
                             >
                                 <option value="" disabled>Thématique</option>
@@ -101,7 +103,6 @@ const QuizCreation = () => {
                             </select>
                         </div>
                         
-                        {/*?? à vérifier si les messages d'erreur marchent*/}
                         {formik.touched.categories && formik.errors.categories ?
                             <span className="errorMessageQuizCreationContainer">
                                 <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
