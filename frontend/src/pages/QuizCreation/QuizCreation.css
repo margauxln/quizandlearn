@@ -104,11 +104,6 @@
     justify-content: end;
 }
 
-.removeQuestion{
-    height: 1.2em;
-    padding-bottom: 0.8em;
-}
-
 /*answers*/
 .addAnswerContainer{
     display: flex;
@@ -131,6 +126,14 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+    position: relative;
+    left: 710px;
+    top: -10px;
+}
+
+.removeQuestionIcon{
+    height: 2em;
+    padding-bottom: 0.8em;
 }
 
 .removeAnswer{

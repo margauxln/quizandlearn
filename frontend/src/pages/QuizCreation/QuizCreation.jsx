@@ -119,15 +119,12 @@ const QuizCreation = () => {
                                 formik.values.questions.map((question, index)=>(
 
                                     <div className="sectionContainer" key={index}>
-                                        <div className="QuestionAndDeleteContainer">
-                                            <p className="questionNumber" >Question {index + 1}</p>
-                                            <button 
-                                                className="button deleteQuestion"
-                                                type="button" 
-                                                onClick={() => remove(index)
-                                            }> <FontAwesomeIcon icon={faX} className="removeQuestion"/> </button>  
-                                        </div>
-                                             
+                                        <button 
+                                            className="button deleteQuestion"
+                                            type="button" 
+                                            onClick={() => remove(index)
+                                        }> <FontAwesomeIcon icon={faX} className="removeQuestionIcon"/> </button>  
+                                        <p className="questionNumber" >Question {index + 1}</p>
 
                                         {/*Question Title*/}
                                         <div className="field">
