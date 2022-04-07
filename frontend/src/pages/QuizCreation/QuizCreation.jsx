@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const additionalRepliesLimit = 4;
+const answerLimit = 4;
 
 const QuizCreation = () => {
 
@@ -14,12 +14,12 @@ const QuizCreation = () => {
             description:"",
             categories: "",
             questionTitle: "",
-            additionalReplies: [
+            answers: [
             {
-                reply1: ""
+                firstAnswer: ""
             },
             {
-                reply2: ""
+                secondAnswer: ""
             }],
         },
         validationSchema: Yup.object({
@@ -130,19 +130,20 @@ const QuizCreation = () => {
                             </span> : null}
                         </div>
 
-                        <FieldArray name="additionalReplies">
+                        {/*Answers array*/}
+                        <FieldArray name="answers">
                             {({ insert, remove }) => (
 
                                 <div className="optionalRepliesContainer">
 
-                                    {(formik.values.additionalReplies.length > 0 && formik.values.additionalReplies.length) &&
-                                    formik.values.additionalReplies.map((reply, index)=>(
+                                    {(formik.values.answers.length > 0 && formik.values.answers.length) &&
+                                    formik.values.answers.map((reply, index)=>(
                                         <div className="answerAndDelete">
                                             <div className="field" id="replyField">
-                                                <label HTMLlFor={`additionalReplies.${index}.reply`} className="sr-only"></label>
+                                                <label HTMLlFor={`answers.${index}.reply`} className="sr-only"></label>
                                                 <input
-                                                    id={`additionalReplies.${index}.reply`}
-                                                    name={`additionalReplies.${index}.reply`}
+                                                    id={`answers.${index}.reply`}
+                                                    name={`answers.${index}.reply`}
                                                     type="text"
                                                     className="input reply"
                                                     onChange={formik.handleChange}
@@ -166,7 +167,7 @@ const QuizCreation = () => {
 
                                         <div className="buttonContainer addQuestionContainer">
 
-                                            {(formik.values.additionalReplies.length < additionalRepliesLimit) &&
+                                            {(formik.values.answers.length < answerLimit) &&
                                                 <input 
                                                     className="button addQuestion"
                                                     type="button" 
