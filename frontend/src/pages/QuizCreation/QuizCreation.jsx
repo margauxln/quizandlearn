@@ -30,10 +30,6 @@ const QuizCreation = () => {
             categories: Yup.string()
                 .required("Champ obligatoire"),
             questionTitle: Yup.string()
-                .required("Champ obligatoire"),
-            reply1: Yup.string()
-                .required("Champ obligatoire"),
-            reply2: Yup.string()
                 .required("Champ obligatoire")
         }),
     });
