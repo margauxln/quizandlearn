@@ -159,7 +159,7 @@ const QuizCreation = () => {
                                                             onChange={formik.handleChange}
                                                             onBlur= {formik.handleBlur}
                                                             maxLength="24"
-                                                            placeholder = "autre réponse possible"
+                                                            placeholder = "réponse"
                                                         />               
                                                         <label class="checkbox">
                                                             <input type="checkbox"/>
