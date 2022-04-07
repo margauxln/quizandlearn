@@ -88,21 +88,34 @@
     max-width: 700px;
 }
 
-.addQuestionContainer{
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 20px;
-}
-
+/*questions*/
 .addQuestion{
     background-color: #2B6FD2;
     color: white;
     font-weight: bold;
     font-family: "Sporting", "sans-serif";
-    cursor: point
+    cursor: pointer;
+    margin-left: 580px;
+    margin-bottom: 30px;
 }
 
-.removeQuestion{
+/*answers*/
+.addAnswerContainer{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+
+.addAnswer{
+    background-color: #2B6FD2;
+    color: white;
+    font-weight: bold;
+    font-family: "Sporting", "sans-serif";
+    cursor: pointer;
+}
+
+.removeAnswer{
     background-color: grey;
     color: white;
     font-weight: bold;
