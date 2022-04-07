@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const additionalRepliesLimit = 2;
+const additionalRepliesLimit = 4;
 
 const QuizCreation = () => {
 
@@ -14,17 +14,13 @@ const QuizCreation = () => {
             description:"",
             categories: "",
             questionTitle: "",
-            reply1: "",
-            reply2: "",
-            additionalReplies: [],
-            /*additionalQuestions: [
-                {
-                    questionTitle: "",
-                    reply1: "",
-                    reply2: "",
-                    additionalReplies: []
-                }
-            ]*/
+            additionalReplies: [
+            {
+                reply1: ""
+            },
+            {
+                reply2: ""
+            }],
         },
         validationSchema: Yup.object({
            title: Yup.string()
@@ -136,63 +132,6 @@ const QuizCreation = () => {
                                 <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
                                 <p className="errorContentQuizCreation">{formik.errors.questionTitle}</p>
                             </span> : null}
-                        </div>
-
-                        <div className="repliesContainer">
-                            {/*Reply 1*/}
-                            <div className="field" id="replyField">
-                                <label HTMLlFor="reply1" className="sr-only"></label>
-                                <input
-                                    id="reply1"
-                                    name="reply1"
-                                    type="text"
-                                    className="input reply"
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value = {formik.values.reply1}
-                                    maxLength="24"
-                                    placeholder = "Réponse possible 1"
-                                />
-
-                            {formik.touched.reply1 && formik.errors.reply1 ?
-                                <span className="errorMessageQuizCreationContainer">
-                                    <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
-                                    <p className="errorContentQuizCreation">{formik.errors.reply1}</p>
-                                </span> : null}
-                            
-                                <label class="checkbox">
-                                    <input type="checkbox"/>
-                                    bonne réponse
-                                </label>
-                            </div>
-
-                            {/*Reply 2*/}
-                            <div className="field" id="replyField">
-                                <label HTMLlFor="reply2" className="sr-only"></label>
-                                <input
-                                    id="reply2"
-                                    name="reply2"
-                                    type="text"
-                                    className="input reply"
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value = {formik.values.reply2}
-                                    maxLength="24"
-                                    placeholder = "Réponse possible 2"
-                                />
-
-                            {formik.touched.reply2 && formik.errors.reply2 ?
-                                <span className="errorMessageQuizCreationContainer">
-                                    <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
-                                    <p className="errorContentQuizCreation">{formik.errors.reply2}</p>
-                                </span> : null}
-                            
-                                <label class="checkbox">
-                                    <input type="checkbox"/>
-                                    bonne réponse
-                                </label>
-                            </div>
-                           
                         </div>
 
                         <FieldArray name="additionalReplies">
