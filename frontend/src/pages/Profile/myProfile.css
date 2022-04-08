@@ -1,4 +1,35 @@
-.body {
-    background-color: #FEC0C0;
-    font-family: "Sporting", "sans-serif";
+.quizCreationPageContainer {
+  width: 100%;
+  position: absolute;
+  min-height: 1000px;
+  background-color: #fec0c0;
+  font-family: "Sporting", "sans-serif";
+}
+
+#quizCreationFormContainer {
+  padding-top: 150px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: start;
+  justify-content: center;
+  min-height: 100%;
+  width: 100%;
+  background-color: #fec0c0;
+}
+
+#titleQuizCreation {
+  font-weight: bold;
+  width: 100%;
+  max-width: 800px;
+  font-size: 40px;
+  margin-bottom: 0.5em;
+  font-family: "Sporting", "sans-serif";
+  text-align: center;
+  color: #f3e74d;
+}
+
+.secondSectionContainer {
+  padding: 150px;
+  background-color: #0e835b;
+  margin-bottom: 20px;
 }
