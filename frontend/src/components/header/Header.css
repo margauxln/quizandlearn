@@ -1,6 +1,7 @@
 .header{
     background-color: #FEC0C0;
 }
+
 .upperPartHeaderContainer {
     display: flex;
     align-items: center;
@@ -29,7 +30,17 @@
     flex-grow: 0.5;
 }
 
-.input{
+@media only screen and (max-width: 1024px) {
+    .upperPartHeaderContainer {
+        display: block;
+    }
+    .input {
+        position: relative;
+        flex: 1 1;
+    }
+}
+
+.input {
     background-color: #17835C;
     color: #F2E669;
 }
@@ -58,12 +69,9 @@
     flex-grow: 1;
 }
 
-.navbar-start{
-    padding-left: 20px;
-    padding-right:20px
-}
+
 .navbar-item{
     color: #FFFFFF;
     min-width: 180px;
-    text-align: center;
+    justify-content: center;
 }

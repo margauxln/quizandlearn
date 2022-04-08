@@ -2,8 +2,7 @@ import LogoBlue from '../../assets/logoBlue.png';
 import profile from '../../assets/profile.png';
 import "./Header.css";
 import { useAuth } from "../../hooks/useAuth";
-import { useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 
@@ -31,28 +30,27 @@ const Header = () => {
                     </div>
                 </section>
             </nav>
-            <section className='menuContainer'>
-                    <div className="navbar-start">
-                        <a className="navbar-item" href={useNavigate('/quizzes')}>
-                            Explore
-                        </a>
-                        <a className="navbar-item">
-                            Categories
-                        </a>
-                        <a className="navbar-item">
-                            Create Quiz
-                        </a>             
-                        <a className="navbar-item">
-                            My Quizzes
-                        </a>
-                        <a className="navbar-item">
-                            Favorites Quizzes
-                        </a>
-                        <a className="navbar-item">
-                            Completed Quizzes
-                        </a>
-                    </div>
-            </section>
+            <div className='menuContainer'>
+                <Link className="navbar-item" to="/quizzes" >
+                    Explore
+                </Link>
+                <Link className="navbar-item" to="/categories" >
+                    Categories
+                </Link>
+                <Link className="navbar-item" to="" >
+                    Create Quiz
+                </Link>
+                {/* A faire */}
+                <Link className="navbar-item" to="/myQuizzes" >
+                    My Quizzes
+                </Link>       
+                <Link className="navbar-item" to="/favoriteQuizzes" >
+                    Favorites Quizzes
+                </Link>  
+                <Link className="navbar-item" to="/completedQuizzes" >
+                    Completed Quizzes
+                </Link> 
+            </div>
         </div>
     );
 }
