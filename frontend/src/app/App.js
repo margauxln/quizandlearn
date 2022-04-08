@@ -6,13 +6,18 @@ import { Routes, Route } from "react-router-dom";
 import Explore from '../pages/Explore/Explore';
 import { AuthProvider } from '../context/AuthProvider';
 import RequireAuth from '../context/RequireAuth';
+import Categories from '../pages/Categories/Categories';
+import Header from '../components/header/Header';
+import MyQuizzes from '../pages/MyQuizzes/MyQuizzes';
+import FavoriteQuizzes from '../pages/FavoriteQuizzes/FavoriteQuizzes';
+import CompletedQuizzes from '../pages/CompletedQuizzes/CompletedQuizzes';
 
 const App = () => {
 
   return (
     <AuthProvider>
+        <Header/>
         <Routes>
-
             {/* public routes */}
             <Route element={<RequireAuth onlyPublic={true}/>}>
               <Route path="/" element={<Login />} />
@@ -22,11 +27,14 @@ const App = () => {
             {/* we want to protect these routes */}
             <Route element={<RequireAuth />}>
               <Route path="/quizzes" element={<Explore />} />
+              <Route path="/categories" element={<Categories />} />
+              <Route path="/myQuizzes" element={<MyQuizzes />} />
+              <Route path="/favoriteQuizzes" element={<FavoriteQuizzes />} />
+              <Route path="/completedQuizzes" element={<CompletedQuizzes />} />
             </Route>
 
             {/* route qui n'existe pas - redirection page Explore*/}
             <Route path="*" element={<Explore />} />
-
         </Routes>
     </AuthProvider>
   );
