@@ -1,9 +1,8 @@
-#quizCreationPageContainer{
+.quizCreationPageContainer{
     width: 100%;
     position: absolute;
     min-height: 1000px;
-    width: 100%;
-    background-color: #FEC0C0;
+    background-color: #FEC0C0; 
     font-family: "Sporting", "sans-serif";
 }
 
@@ -97,11 +96,6 @@
     cursor: pointer;
     margin-left: 580px;
     margin-bottom: 30px;
-}
-
-.QuestionAndDeleteContainer{
-    display: flex;
-    justify-content: end;
 }
 
 /*answers*/

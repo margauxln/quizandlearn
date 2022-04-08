@@ -10,6 +10,7 @@ const answerLimit = 4;
 const QuizCreation = () => {
 
     const formik = useFormik({
+        //Objet initial qu'on voit dessiné sur le DOM
         initialValues: {
             title: "",
             description:"",
@@ -18,11 +19,12 @@ const QuizCreation = () => {
                 {
                     questionTitle: "",
                     answers: [
+                        //On voit 2 objets réponses
                         { 
-                            label: "" 
+                            content: "" 
                         },
                         { 
-                            label: "" 
+                            content: "" 
                         }
                     ]
                 }
@@ -34,195 +36,207 @@ const QuizCreation = () => {
             description: Yup.string()
                 .required("Champ obligatoire"),
             categories: Yup.string()
-                .required("Champ obligatoire")
+                .required("Champ obligatoire"),
+            bonneReponse: Yup.string()
+                .required("Champs obligatoire")
         }),
     });
 
     return (
-            <FormikProvider value={formik} id="quizCreationPageContainer">
+        <div className="quizCreationPageContainer">
+            <FormikProvider value={formik}>
 
-                <form id="quizCreationFormContainer">
+            <form id="quizCreationFormContainer">
 
-                <h1 id="titleQuizCreation">Création de Quiz</h1>
+            <h1 id="titleQuizCreation">Création de Quiz</h1>
 
-                    <div className="sectionContainer">
-                        {/*Title*/}
-                        <div className="field">
-                            <label htmlFor="title" className="sr-only">Title</label>
-                            <input
-                                id="title"
-                                name="title"
-                                type="text"
-                                className="input"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value = {formik.values.title}
-                                maxLength="24"
-                                placeholder = "Titre questionnaire"
-                            />
-
-                        {formik.touched.title && formik.errors.title ?
-                            <span className="errorMessageQuizCreationContainer">
-                                <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
-                                <p className="errorContentQuizCreation">{formik.errors.title}</p>
-                            </span> : null}
-                        </div>
-
-                        {/*Description*/}
-                        <textarea
-                            name="description"
-                            className="textarea"
-                            placeholder="Description"
-                            rows="4"
+                <div className="sectionContainer">
+                    {/*Title*/}
+                    <div className="field">
+                        <label htmlFor="title" className="sr-only">Title</label>
+                        <input
+                            id="title"
+                            name="title"
                             type="text"
+                            className="input"
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
-                            value = {formik.values.description}
-                            >
-                        </textarea>
+                            value = {formik.values.title}
+                            maxLength="24"
+                            placeholder = "Titre questionnaire"
+                        />
 
-                        {formik.touched.description && formik.errors.description ?
-                            <span className="errorMessageQuizCreationContainer">
-                                <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
-                                <p className="errorContentQuizCreation">{formik.errors.description}</p>
-                            </span> : null}
-
-                        {/*Select*/}
-                        <div className="select is-warning" id="selectCategoriesContainer">
-                            <select 
-                                id="selectCategories" 
-                                name="categories"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value= {formik.values.categories}
-                            >
-                                <option value="" disabled>Thématique</option>
-                                <option value="tech">Tech</option>
-                                <option value="feminisme">Feminisme</option>
-                                <option value="ecologie">Ecologie</option>
-                            </select>
-                        </div>
-                        
-                        {formik.touched.categories && formik.errors.categories ?
-                            <span className="errorMessageQuizCreationContainer">
-                                <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
-                                <p className="errorContentQuizCreation">{formik.errors.categories}</p>
-                            </span> : null}
+                    {formik.touched.title && formik.errors.title ?
+                        <span className="errorMessageQuizCreationContainer">
+                            <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
+                            <p className="errorContentQuizCreation">{formik.errors.title}</p>
+                        </span> : null}
                     </div>
 
-                    <FieldArray name="questions">
+                    {/*Description*/}
+                    <textarea
+                        name="description"
+                        className="textarea"
+                        placeholder="Description"
+                        rows="4"
+                        type="text"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value = {formik.values.description}
+                        >
+                    </textarea>
 
-                        {({ push, remove }) => (
-                            <>
-                            {/* Pour voir les values : {JSON.stringify(formik.values.questions)} */}
+                    {formik.touched.description && formik.errors.description ?
+                        <span className="errorMessageQuizCreationContainer">
+                            <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
+                            <p className="errorContentQuizCreation">{formik.errors.description}</p>
+                        </span> : null}
 
-                                {(formik.values.questions.length > 0 && formik.values.questions.length) &&
-                                formik.values.questions.map((question, index)=>(
+                    {/*Select*/}
+                    <div className="select is-warning" id="selectCategoriesContainer">
+                        <select 
+                            id="selectCategories" 
+                            name="categories"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value= {formik.values.categories}
+                        >
+                            <option value="" disabled>Thématique</option>
+                            <option value="tech">Tech</option>
+                            <option value="feminisme">Feminisme</option>
+                            <option value="ecologie">Ecologie</option>
+                        </select>
+                    </div>
+                    
+                    {formik.touched.categories && formik.errors.categories ?
+                        <span className="errorMessageQuizCreationContainer">
+                            <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
+                            <p className="errorContentQuizCreation">{formik.errors.categories}</p>
+                        </span> : null}
+                </div>
 
-                                    <div className="sectionContainer" key={index}>
-                                        <button 
-                                            className="button deleteQuestion"
-                                            type="button" 
-                                            onClick={() => remove(index)
-                                        }> <FontAwesomeIcon icon={faX} className="removeQuestionIcon"/> </button>  
-                                        <p className="questionNumber" >Question {index + 1}</p>
+                <FieldArray name="questions">
 
-                                        {/*Question Title*/}
-                                        <div className="field">
-                                            <label htmlFor={`questions.${index}.question`} className="sr-only"></label>
-                                            <input
-                                                id={`questions.${index}.question`}
-                                                name={`questions.${index}.question`}
-                                                type="text"
-                                                className="input"
-                                                onChange={formik.handleChange}
-                                                onBlur={formik.handleBlur}
-                                                maxLength="24"
-                                                placeholder = "Titre Question" 
-                                            />
+                    {({ push, remove }) => (
+                        <>
+                        {/* Pour voir les values : {JSON.stringify(formik.values.questions)} */}
 
-                                        </div>
+                            {(formik.values.questions.length > 0) &&
+                            formik.values.questions.map((question, index)=>(
 
-                                        <FieldArray name={`questions.${index}.answers`}>
+                                
+                                <div className="sectionContainer" key={index}>
+                                    <button 
+                                        className="button deleteQuestion"
+                                        type="button" 
+                                        onClick={() => remove(index) //Supprimer une question
+                                    }> <FontAwesomeIcon icon={faX} className="removeQuestionIcon"/> </button>  
+                                    <p className="questionNumber" >Question {index + 1}</p>
 
-                                            {({ push, remove }) => ( 
-                                                <>
-                                                {question  && question.answers && question.answers.map((answer, idx)=>(
-                                                    <div className="answerAndDelete" key={idx}>
-                                                    <div className="field" id="replyField">
-                                                        <label htmlFor={`${index}.${idx}`} className="sr-only"></label>
-                                                        <input
-                                                            id={`${index}.${idx}`}
-                                                            name={`${index}.${idx}`}
-                                                            type="text"
-                                                            className="input answer"
+                                    {/*Question Title*/}
+                                    <div className="field">
+                                        <label htmlFor={`questions.${index}.question`} className="sr-only"></label>
+                                        <input
+                                            id={`questions.${index}.question`}
+                                            name={`questions.${index}.question`}
+                                            type="text"
+                                            className="input"
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            maxLength="24"
+                                            placeholder = "Titre Question" 
+                                        />
+
+                                    </div>
+
+                                    <FieldArray name={`questions.${index}.answers`}>
+
+                                        {({ push, remove }) => ( 
+                                            <>
+                                            {question  && question.answers && question.answers.map((answer, idx)=>(
+                                                <div className="answerAndDelete" key={idx}>
+                                                <div className="field" id="replyField">
+                                                    <label htmlFor={`${index}.${idx}`} className="sr-only"></label>
+                                                    <input
+                                                        id={`${index}.${idx}`}
+                                                        name={`${index}.${idx}`}
+                                                        type="text"
+                                                        className="input answer"
+                                                        onChange={formik.handleChange}
+                                                        onBlur= {formik.handleBlur}
+                                                        maxLength="24"
+                                                        placeholder = "réponse"
+                                                    />               
+                                                    <label class="checkbox" htmlFor="bonneReponse">
+                                                        <input 
+                                                            type="checkbox"
+                                                            id="bonneReponse"
+                                                            value={formik.bonneReponse}
                                                             onChange={formik.handleChange}
                                                             onBlur= {formik.handleBlur}
-                                                            maxLength="24"
-                                                            placeholder = "réponse"
-                                                        />               
-                                                        <label class="checkbox">
-                                                            <input type="checkbox"/>
-                                                            bonne réponse
-                                                        </label>
-                                                    </div>
-                                                    <button 
-                                                        className="button removeAnswer"
-                                                        type="button" 
-                                                        onClick={() => remove(idx)}
-                                                    >X</button>
+                                                        />
+                                                        bonne réponse
+                                                    </label>
                                                 </div>
-                                                ))}
+                                                <button 
+                                                    className="button removeAnswer"
+                                                    type="button" 
+                                                    onClick={() => remove(idx)}
+                                                >X</button>
+                                            </div>
+                                            ))}
 
-                                                <div className="buttonContainer addAnswerContainer">
-                                                    {question  && question.answers && (question.answers.length < answerLimit) &&
-                                                        <input 
-                                                            className="button addAnswer"
-                                                            type="button" 
-                                                            value="Ajouter une réponse"
-                                                            onClick={() => push(
-                                                                { 
-                                                                    answer:'' 
-                                                                }
-                                                            )}
-                                                        />}
-                                                </div>   
-                                                </>
-                                            )}
+                                            <div className="buttonContainer addAnswerContainer">
+                                                {question  && question.answers && (question.answers.length < answerLimit) &&
+                                                    <input 
+                                                        className="button addAnswer"
+                                                        type="button" 
+                                                        value="Ajouter une réponse"
+                                                        onClick={() => push(
+                                                            { 
+                                                                answer:'' 
+                                                            }
+                                                        )}
+                                                    />}
+                                            </div>   
+                                            </>
+                                        )}
 
-                                        </FieldArray> 
-                                    </div>
-                                ))}
-                                
-                                <>
-                                    {(formik.values.questions.length < questionLimit) &&
+                                    </FieldArray> 
+                                </div>
+                            ))}
+                            
+                            <>
+                                {(formik.values.questions.length < questionLimit) &&
 
-                                        <input 
-                                        className="button addQuestion"
-                                        type="button" 
-                                        value="Ajouter une question"
-                                        onClick={() => push({ 
-                                            questionTitle:'', 
-                                            answers:[
-                                                {
-                                                    label: ""
-                                                },
-                                                {
-                                                    label: ""
-                                                }
-                                            ] 
-                                        })
-                                        }
+                                    <input 
+                                    className="button addQuestion"
+                                    type="button" 
+                                    value="Ajouter une question"
+                                    onClick={() => push({ 
+                                        questionTitle:'', 
+                                        answers:[
+                                            {
+                                                content: ""
+                                            },
+                                            {
+                                                content: ""
+                                            }
+                                        ] 
+                                    })
+                                    }
 
-                                    />}
-                                </>
-
+                                />}
                             </>
-                        )}  
-                    </FieldArray>
 
-                </form>
+                        </>
+                    )}  
+                </FieldArray>
+
+            </form>
             </FormikProvider>
+
+        </div>
     );
 }
 
