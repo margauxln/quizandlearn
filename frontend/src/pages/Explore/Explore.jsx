@@ -1,4 +1,3 @@
-import Header from "../../components/header/Header";
 import { useAuth } from "../../hooks/useAuth";
 
 const Explore = () => {
@@ -9,7 +8,6 @@ const Explore = () => {
 
     return(
         <>
-            <Header/>
             <div>Page explorer !</div>
         </>
         

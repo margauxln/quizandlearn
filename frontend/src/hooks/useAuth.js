@@ -22,12 +22,15 @@ export const useAuth = () => {
                     withCredentials: true
                 });
                 /* voir réponse du serveur : console.log(JSON.stringify(response.data));*/
-
+                console.log("response",response);
 
                 //2--STOCKAGE DANS LOCAL STORAGE de l'USER (de l'email + token) - pour securité: bien de ne pas stocker mdp
                 const accessToken = response.data.token;
+                const userId= response.data.userId;
+
                 const userData = {
-                    email: values.email,
+                    userId: userId,
+                    //email: values.email,
                     token: accessToken
                 };
 
