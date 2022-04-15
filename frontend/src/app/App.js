@@ -7,16 +7,16 @@ import Explore from '../pages/Explore/Explore';
 import { AuthProvider } from '../context/AuthProvider';
 import RequireAuth from '../context/RequireAuth';
 import Categories from '../pages/Categories/Categories';
-import Header from '../components/header/Header';
+import Navigation from '../components/navigation/Navigation';
 import MyQuizzes from '../pages/MyQuizzes/MyQuizzes';
 import FavoriteQuizzes from '../pages/FavoriteQuizzes/FavoriteQuizzes';
 import CompletedQuizzes from '../pages/CompletedQuizzes/CompletedQuizzes';
 
 const App = () => {
-
+  
   return (
     <AuthProvider>
-        <Header/>
+        <Navigation/>
         <Routes>
             {/* public routes */}
             <Route element={<RequireAuth onlyPublic={true}/>}>
