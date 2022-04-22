@@ -1,10 +1,10 @@
-import "./QuizCreation.css";
-import { useFormik, FormikProvider, FieldArray } from "formik";
+import './QuizCreation.css';
+import { useFormik, FormikProvider, FieldArray } from 'formik';
 import * as Yup from "yup";
 import { faInfoCircle, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const questionLimit = 10;
+const questionLimit = 5;
 const answerLimit = 4;
 
 const QuizCreation = () => {
@@ -21,7 +21,7 @@ const QuizCreation = () => {
                     answers: [
                         //On voit 2 objets réponses
                         { 
-                            content: "" 
+                            content: ""
                         },
                         { 
                             content: "" 
@@ -37,10 +37,13 @@ const QuizCreation = () => {
                 .required("Champ obligatoire"),
             categories: Yup.string()
                 .required("Champ obligatoire"),
-            bonneReponse: Yup.string()
-                .required("Champs obligatoire")
+            /* questionTitle: Yup.string()
+                .required("Champ obligatoire"),
+            content: Yup.array()
+                .required("Champ obligatoire") */
         }),
     });
+    //https://stackoverflow.com/questions/55793229/no-yup-validation-errors-found-by-formik-in-array-of-objects
 
     return (
         <div className="quizCreationPageContainer">
@@ -144,7 +147,7 @@ const QuizCreation = () => {
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                             maxLength="24"
-                                            placeholder = "Titre Question" 
+                                            placeholder = "Titre Question"
                                         />
 
                                     </div>
@@ -178,11 +181,12 @@ const QuizCreation = () => {
                                                         bonne réponse
                                                     </label>
                                                 </div>
+                                                {question && question.answers.length > 2 &&
                                                 <button 
                                                     className="button removeAnswer"
                                                     type="button" 
                                                     onClick={() => remove(idx)}
-                                                >X</button>
+                                                >X</button>}
                                             </div>
                                             ))}
 
