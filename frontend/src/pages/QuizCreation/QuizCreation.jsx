@@ -1,6 +1,5 @@
 import './QuizCreation.css';
 import { useFormik, FormikProvider, FieldArray } from 'formik';
-import * as Yup from "yup";
 import { faInfoCircle, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
@@ -41,15 +40,7 @@ const QuizCreation = () => {
                     ]
                 }
             ]
-        },
-        validationSchema: Yup.object({
-           title: Yup.string()
-                .required("Champ obligatoire"),
-            description: Yup.string()
-                .required("Champ obligatoire"),
-            categories: Yup.string()
-                .required("Champ obligatoire")
-        }),
+        }
     });
 
     return (
@@ -75,12 +66,6 @@ const QuizCreation = () => {
                             maxLength="24"
                             placeholder = "Titre questionnaire"
                         />
-
-                    {formik.touched.title && formik.errors.title ?
-                        <span className="errorMessageQuizCreationContainer">
-                            <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
-                            <p className="errorContentQuizCreation">{formik.errors.title}</p>
-                        </span> : null}
                     </div>
 
                     {/*Description*/}
@@ -95,12 +80,6 @@ const QuizCreation = () => {
                         value = {formik.values.description}
                         >
                     </textarea>
-
-                    {formik.touched.description && formik.errors.description ?
-                        <span className="errorMessageQuizCreationContainer">
-                            <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
-                            <p className="errorContentQuizCreation">{formik.errors.description}</p>
-                        </span> : null}
 
                     {/*Select*/}
                     <div className="select is-warning" id="selectCategoriesContainer">
@@ -118,11 +97,6 @@ const QuizCreation = () => {
                         </select>
                     </div>
                     
-                    {formik.touched.categories && formik.errors.categories ?
-                        <span className="errorMessageQuizCreationContainer">
-                            <FontAwesomeIcon icon={faInfoCircle} className="errorIconQuizCreation" />
-                            <p className="errorContentQuizCreation">{formik.errors.categories}</p>
-                        </span> : null}
                 </div>
 
                 <FieldArray name="questions">
@@ -186,7 +160,6 @@ const QuizCreation = () => {
                                                         />
                                                         bonne réponse
                                                     </label>
-                                                    {console.log(textAnswer, isChecked)}
                                                 </div>
                                                 {question && question.answers.length > 2 &&
                                                 <button 
