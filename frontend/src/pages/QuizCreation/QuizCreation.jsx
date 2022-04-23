@@ -3,11 +3,23 @@ import { useFormik, FormikProvider, FieldArray } from 'formik';
 import * as Yup from "yup";
 import { faInfoCircle, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
 
 const questionLimit = 5;
 const answerLimit = 4;
 
 const QuizCreation = () => {
+
+    /* const[ isChecked, setIsChecked ] = useState(false);
+    const [ textAnswer, setTextAnswer ] = useState("");
+
+    const handleOnChange = () => {
+        setIsChecked(!isChecked);
+    };
+
+    const enterAnswer = (e) => {
+        setTextAnswer(e.target.value);
+    }; */
 
     const formik = useFormik({
         //Objet initial qu'on voit dessiné sur le DOM
@@ -36,14 +48,9 @@ const QuizCreation = () => {
             description: Yup.string()
                 .required("Champ obligatoire"),
             categories: Yup.string()
-                .required("Champ obligatoire"),
-            /* questionTitle: Yup.string()
-                .required("Champ obligatoire"),
-            content: Yup.array()
-                .required("Champ obligatoire") */
+                .required("Champ obligatoire")
         }),
     });
-    //https://stackoverflow.com/questions/55793229/no-yup-validation-errors-found-by-formik-in-array-of-objects
 
     return (
         <div className="quizCreationPageContainer">
@@ -165,21 +172,21 @@ const QuizCreation = () => {
                                                         name={`${index}.${idx}`}
                                                         type="text"
                                                         className="input answer"
-                                                        onChange={formik.handleChange}
-                                                        onBlur= {formik.handleBlur}
                                                         maxLength="24"
                                                         placeholder = "réponse"
+                                                        /* value={textAnswer}
+                                                        onChange={enterAnswer} */
                                                     />               
                                                     <label class="checkbox" htmlFor="bonneReponse">
                                                         <input 
                                                             type="checkbox"
                                                             id="bonneReponse"
-                                                            value={formik.bonneReponse}
-                                                            onChange={formik.handleChange}
-                                                            onBlur= {formik.handleBlur}
+                                                            /* value={isChecked}
+                                                            onChange={handleOnChange} */
                                                         />
                                                         bonne réponse
                                                     </label>
+                                                    {console.log(textAnswer, isChecked)}
                                                 </div>
                                                 {question && question.answers.length > 2 &&
                                                 <button 

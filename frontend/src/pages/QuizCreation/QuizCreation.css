@@ -4,16 +4,19 @@
     min-height: 1000px;
     background-color: #FEC0C0; 
     font-family: "Sporting", "sans-serif";
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
 }
 
 #quizCreationFormContainer{
     padding-top: 100px;
     max-width: 800px;
+    min-width: 300px;
     margin: 0 auto;
     text-align: start;
     justify-content: center;
     min-height: 100%;
-    width: 100%;
 }
 
 #titleQuizCreation{
@@ -69,7 +72,7 @@
 
 #selectCategories {
     height: 40px;
-    width: 800px;
+    max-width: 800px;
 }
 
 
@@ -144,6 +147,8 @@
 
 #replyField > input[type="text"] {
     background-color: #0E835B;
+    /*A voir si garder*/
+    max-width: 694px;
 }
 
 /*Error messages*/
@@ -163,4 +168,36 @@
     color: firebrick;
     padding-top: 0.3em;
     text-align: start;
+}
+
+
+@media(max-width:900px){
+
+    #quizCreationFormContainer{
+        max-width: 650px;
+        margin: 0 auto;
+    }
+    .deleteQuestion{
+        left: 550px;
+    }
+
+    .addQuestion{
+        margin-left: 430px;
+    }
+}
+
+{/*Affiner version mobile*/}
+@media(max-width:700px){
+
+    #quizCreationFormContainer{
+        max-width: 550px;
+        margin: 0 auto;
+    }
+    .deleteQuestion{
+        left: 450px;
+    }
+
+    .addQuestion{
+        margin-left: 330px;
+    }
 }
