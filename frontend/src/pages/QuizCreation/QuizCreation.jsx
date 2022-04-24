@@ -21,11 +21,11 @@ const QuizCreation = () => {
                             //On voit 2 objets réponses
                             { 
                                 answerContent: "",
-                                isChecked: false
+                                isCorrectAnswer: false
                             },
                             { 
                                 answerContent: "",
-                                isChecked: false
+                                isCorrectAnswer: false
                             }
                         ]
                     }
@@ -135,11 +135,13 @@ const QuizCreation = () => {
                                                         onChange={formik.handleChange}
                                                     />
 
-                                                    <label class="checkbox" htmlFor="bonneReponse">
+                                                    <label class="checkbox" htmlFor={`questions.${index}.answers.${idx}.isCorrectAnswer`}>
                                                         <input 
                                                             type="checkbox"
-                                                            id="bonneReponse"
-                                                            onChange=""
+                                                            id={`questions.${index}.answers.${idx}.isCorrectAnswer`}
+                                                            name={`questions.${index}.answers.${idx}.isCorrectAnswer`}
+                                                            value={formik.values.questions[index].answers[idx].isCorrectAnswer}
+                                                            onChange={formik.handleChange}
                                                         />
                                                         bonne réponse
                                                     </label>
@@ -162,7 +164,7 @@ const QuizCreation = () => {
                                                         onClick={() => push(
                                                             { 
                                                                 answerContent: "",
-                                                                isChecked: false
+                                                                isCorrectAnswer: false
                                                             }
                                                         )}
                                                     />}
@@ -186,11 +188,11 @@ const QuizCreation = () => {
                                         answers:[
                                             {
                                                 answerContent: "",
-                                                isChecked: false
+                                                isCorrectAnswer: false
                                             },
                                             {
                                                 answerContent: "",
-                                                isChecked: false
+                                                isCorrectAnswer: false
                                             }
                                         ] 
                                     })
