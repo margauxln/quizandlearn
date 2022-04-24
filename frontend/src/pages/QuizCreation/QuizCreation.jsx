@@ -9,7 +9,6 @@ const answerLimit = 4;
 const QuizCreation = () => {
 
     const formik = useFormik({
-            //Objet initial qu'on voit dessiné sur le DOM
             initialValues: {
                 title: "",
                 description:"",
@@ -18,7 +17,6 @@ const QuizCreation = () => {
                     {
                         question: "",
                         answers: [
-                            //On voit 2 objets réponses
                             { 
                                 answerContent: "",
                                 isCorrectAnswer: false
@@ -53,6 +51,7 @@ const QuizCreation = () => {
                             value = {formik.values.title}
                             maxLength="24"
                             placeholder = "Titre questionnaire"
+                            required
                         />
                     </div>
 
@@ -64,6 +63,7 @@ const QuizCreation = () => {
                         rows="4"
                         type="text"
                         value = {formik.values.description}
+                        required
                         >
                     </textarea>
 
@@ -73,6 +73,7 @@ const QuizCreation = () => {
                             id="selectCategories" 
                             name="categories"
                             value= {formik.values.categories}
+                            required
                         >
                             <option value="" disabled>Thématique</option>
                             <option value="tech">Tech</option>
@@ -113,6 +114,7 @@ const QuizCreation = () => {
                                             placeholder = "Titre Question"
                                             value={formik.values.questions[index].question}
                                             onChange={formik.handleChange}
+                                            required
                                         />
                                     </div>
 
@@ -133,6 +135,7 @@ const QuizCreation = () => {
                                                         placeholder = "réponse"
                                                         value={formik.values.questions[index].answers[idx].answerContent}
                                                         onChange={formik.handleChange}
+                                                        required
                                                     />
 
                                                     <label class="checkbox" htmlFor={`questions.${index}.answers.${idx}.isCorrectAnswer`}>
@@ -142,6 +145,7 @@ const QuizCreation = () => {
                                                             name={`questions.${index}.answers.${idx}.isCorrectAnswer`}
                                                             value={formik.values.questions[index].answers[idx].isCorrectAnswer}
                                                             onChange={formik.handleChange}
+                                                            required
                                                         />
                                                         bonne réponse
                                                     </label>
