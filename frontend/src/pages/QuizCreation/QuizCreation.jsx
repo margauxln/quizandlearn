@@ -16,7 +16,7 @@ const QuizCreation = () => {
                 categories: "",
                 questions: [
                     {
-                        questionTitle: "",
+                        question: "",
                         answers: [
                             //On voit 2 objets réponses
                             { 
@@ -91,9 +91,8 @@ const QuizCreation = () => {
                        {JSON.stringify(formik.values.questions)}
 
                             {(formik.values.questions.length > 0) &&
-                            formik.values.questions.map((questionTitle, index)=>(
+                            formik.values.questions.map((question, index)=>(
 
-                                
                                 <div className="sectionContainer" key={index}>
                                     <button 
                                         className="button deleteQuestion"
@@ -104,15 +103,15 @@ const QuizCreation = () => {
 
                                     {/*Question Title*/}
                                     <div className="field">
-                                        <label htmlFor={`questions.${index}.questionTitle`} className="sr-only"></label>
+                                        <label htmlFor={`questions.${index}.question`} className="sr-only"></label>
                                         <input
-                                            id={`questions.${index}.questionTitle`}
-                                            name={`questions.${index}.questionTitle`}
+                                            id={`questions.${index}.question`}
+                                            name={`questions.${index}.question`}
                                             type="text"
                                             className="input"
                                             maxLength="24"
                                             placeholder = "Titre Question"
-                                            value={formik.values.questions[index].questionTitle}
+                                            value={formik.values.questions[index].question}
                                             onChange={formik.handleChange}
                                         />
                                     </div>
@@ -121,29 +120,31 @@ const QuizCreation = () => {
 
                                         {({ push, remove }) => ( 
                                             <>
-                                            {questionTitle  && questionTitle.answers && questionTitle.answers.map((answer, idx)=>(
+                                            {question  && question.answers && question.answers.map((answerContent, idx)=>(
                                                 <div className="answerAndDelete" key={idx}>
                                                 <div className="field" id="replyField">
-                                                    <label htmlFor={`${index}.${idx}`} className="sr-only"></label>
+                                                    <label htmlFor={`questions.${index}.answers.${idx}.answerContent`} className="sr-only"></label>
                                                     <input
-                                                        id={`${index}.${idx}`}
-                                                        name={`${index}.${idx}`}
+                                                        id={`questions.${index}.answers.${idx}.answerContent`}
+                                                        name={`questions.${index}.answers.${idx}.answerContent`}
                                                         type="text"
                                                         className="input answer"
                                                         maxLength="24"
                                                         placeholder = "réponse"
-                                                    />            
+                                                        value={formik.values.questions[index].answers[idx].answerContent}
+                                                        onChange={formik.handleChange}
+                                                    />
+
                                                     <label class="checkbox" htmlFor="bonneReponse">
                                                         <input 
                                                             type="checkbox"
                                                             id="bonneReponse"
                                                             onChange=""
-
                                                         />
                                                         bonne réponse
                                                     </label>
                                                 </div>
-                                                {questionTitle && questionTitle.answers.length > 2 &&
+                                                {question && question.answers.length > 2 &&
                                                 <button 
                                                     className="button removeAnswer"
                                                     type="button" 
@@ -153,7 +154,7 @@ const QuizCreation = () => {
                                             ))}
 
                                             <div className="buttonContainer addAnswerContainer">
-                                                {questionTitle  && questionTitle.answers && (questionTitle.answers.length < answerLimit) &&
+                                                {question  && question.answers && (question.answers.length < answerLimit) &&
                                                     <input 
                                                         className="button addAnswer"
                                                         type="button" 
@@ -181,7 +182,7 @@ const QuizCreation = () => {
                                     type="button" 
                                     value="Ajouter une question"
                                     onClick={() => push({ 
-                                        questionTitle:'', 
+                                        question:'', 
                                         answers:[
                                             {
                                                 answerContent: "",
