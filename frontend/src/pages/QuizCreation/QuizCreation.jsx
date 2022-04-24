@@ -1,47 +1,37 @@
 import './QuizCreation.css';
 import { useFormik, FormikProvider, FieldArray } from 'formik';
-import { faInfoCircle, faX } from '@fortawesome/free-solid-svg-icons';
+import { faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState } from 'react';
 
 const questionLimit = 5;
 const answerLimit = 4;
 
 const QuizCreation = () => {
 
-    /* const[ isChecked, setIsChecked ] = useState(false);
-    const [ textAnswer, setTextAnswer ] = useState("");
-
-    const handleOnChange = () => {
-        setIsChecked(!isChecked);
-    };
-
-    const enterAnswer = (e) => {
-        setTextAnswer(e.target.value);
-    }; */
-
     const formik = useFormik({
-        //Objet initial qu'on voit dessiné sur le DOM
-        initialValues: {
-            title: "",
-            description:"",
-            categories: "",
-            questions: [
-                {
-                    questionTitle: "",
-                    answers: [
-                        //On voit 2 objets réponses
-                        { 
-                            content: ""
-                        },
-                        { 
-                            content: "" 
-                        }
-                    ]
-                }
-            ]
-        }
-    });
+            //Objet initial qu'on voit dessiné sur le DOM
+            initialValues: {
+                title: "",
+                description:"",
+                categories: "",
+                questions: [
+                    {
+                        questionTitle: "",
+                        answers: [
+                            //On voit 2 objets réponses
+                            { 
+                                answerContent: "",
+                                isChecked: false
+                            },
+                            { 
+                                answerContent: "",
+                                isChecked: false
+                            }
+                        ]
+                    }
+                ]
+            }
+        });
 
     return (
         <div className="quizCreationPageContainer">
@@ -60,8 +50,6 @@ const QuizCreation = () => {
                             name="title"
                             type="text"
                             className="input"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
                             value = {formik.values.title}
                             maxLength="24"
                             placeholder = "Titre questionnaire"
@@ -75,8 +63,6 @@ const QuizCreation = () => {
                         placeholder="Description"
                         rows="4"
                         type="text"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
                         value = {formik.values.description}
                         >
                     </textarea>
@@ -86,8 +72,6 @@ const QuizCreation = () => {
                         <select 
                             id="selectCategories" 
                             name="categories"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
                             value= {formik.values.categories}
                         >
                             <option value="" disabled>Thématique</option>
@@ -103,10 +87,11 @@ const QuizCreation = () => {
 
                     {({ push, remove }) => (
                         <>
-                        {/* Pour voir les values : {JSON.stringify(formik.values.questions)} */}
+                    {/*pour voir les valeurs : */}
+                       {JSON.stringify(formik.values.questions)}
 
                             {(formik.values.questions.length > 0) &&
-                            formik.values.questions.map((question, index)=>(
+                            formik.values.questions.map((questionTitle, index)=>(
 
                                 
                                 <div className="sectionContainer" key={index}>
@@ -119,25 +104,24 @@ const QuizCreation = () => {
 
                                     {/*Question Title*/}
                                     <div className="field">
-                                        <label htmlFor={`questions.${index}.question`} className="sr-only"></label>
+                                        <label htmlFor={`questions.${index}.questionTitle`} className="sr-only"></label>
                                         <input
-                                            id={`questions.${index}.question`}
-                                            name={`questions.${index}.question`}
+                                            id={`questions.${index}.questionTitle`}
+                                            name={`questions.${index}.questionTitle`}
                                             type="text"
                                             className="input"
-                                            onChange={formik.handleChange}
-                                            onBlur={formik.handleBlur}
                                             maxLength="24"
                                             placeholder = "Titre Question"
+                                            value={formik.values.questions[index].questionTitle}
+                                            onChange={formik.handleChange}
                                         />
-
                                     </div>
 
                                     <FieldArray name={`questions.${index}.answers`}>
 
                                         {({ push, remove }) => ( 
                                             <>
-                                            {question  && question.answers && question.answers.map((answer, idx)=>(
+                                            {questionTitle  && questionTitle.answers && questionTitle.answers.map((answer, idx)=>(
                                                 <div className="answerAndDelete" key={idx}>
                                                 <div className="field" id="replyField">
                                                     <label htmlFor={`${index}.${idx}`} className="sr-only"></label>
@@ -148,20 +132,18 @@ const QuizCreation = () => {
                                                         className="input answer"
                                                         maxLength="24"
                                                         placeholder = "réponse"
-                                                        /* value={textAnswer}
-                                                        onChange={enterAnswer} */
-                                                    />               
+                                                    />            
                                                     <label class="checkbox" htmlFor="bonneReponse">
                                                         <input 
                                                             type="checkbox"
                                                             id="bonneReponse"
-                                                            /* value={isChecked}
-                                                            onChange={handleOnChange} */
+                                                            onChange=""
+
                                                         />
                                                         bonne réponse
                                                     </label>
                                                 </div>
-                                                {question && question.answers.length > 2 &&
+                                                {questionTitle && questionTitle.answers.length > 2 &&
                                                 <button 
                                                     className="button removeAnswer"
                                                     type="button" 
@@ -171,14 +153,15 @@ const QuizCreation = () => {
                                             ))}
 
                                             <div className="buttonContainer addAnswerContainer">
-                                                {question  && question.answers && (question.answers.length < answerLimit) &&
+                                                {questionTitle  && questionTitle.answers && (questionTitle.answers.length < answerLimit) &&
                                                     <input 
                                                         className="button addAnswer"
                                                         type="button" 
                                                         value="Ajouter une réponse"
                                                         onClick={() => push(
                                                             { 
-                                                                answer:'' 
+                                                                answerContent: "",
+                                                                isChecked: false
                                                             }
                                                         )}
                                                     />}
@@ -201,10 +184,12 @@ const QuizCreation = () => {
                                         questionTitle:'', 
                                         answers:[
                                             {
-                                                content: ""
+                                                answerContent: "",
+                                                isChecked: false
                                             },
                                             {
-                                                content: ""
+                                                answerContent: "",
+                                                isChecked: false
                                             }
                                         ] 
                                     })
